@@ -1,627 +1,1448 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MedBridge Travel | Affordable Global Healthcare</title>
-  <meta name="description" content="MedBridge Travel helps Americans access affordable, high-quality medical and cosmetic care abroad with transparent pricing and concierge support.">
-  <style>
-    :root {
-      --bg: #f7f9fc;
-      --surface: #ffffff;
-      --primary: #1260cc;
-      --primary-dark: #0b499c;
-      --accent: #21b68a;
-      --text: #1e293b;
-      --muted: #5b677a;
-      --border: #dde5f0;
-      --shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
-      --radius: 16px;
-      --max-width: 1080px;
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedBridge Travel | Global Healthcare, Simplified</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c2c6d4",
+                        "secondary-fixed": "#8cf3f3",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#727783",
+                        "surface-container-high": "#e5e9eb",
+                        "on-tertiary-fixed": "#001e30",
+                        "primary-fixed": "#d6e3ff",
+                        "tertiary": "#004c72",
+                        "surface-container-low": "#f1f4f6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d7dadc",
+                        "tertiary-fixed-dim": "#8ecdff",
+                        "secondary-container": "#8cf3f3",
+                        "on-secondary-fixed": "#002020",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-container": "#007070",
+                        "on-tertiary-fixed-variant": "#004b70",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e0e3e5",
+                        "on-background": "#181c1e",
+                        "surface-container": "#ebeef0",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#005eb8",
+                        "primary": "#00478d",
+                        "on-error": "#ffffff",
+                        "on-surface": "#181c1e",
+                        "tertiary-fixed": "#cae6ff",
+                        "background": "#f7fafc",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef1f3",
+                        "secondary-fixed-dim": "#6fd7d6",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "on-primary-fixed-variant": "#00468c",
+                        "surface-bright": "#f7fafc",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary-container": "#c8daff",
+                        "tertiary-container": "#006595",
+                        "on-tertiary-container": "#b9deff",
+                        "inverse-primary": "#a9c7ff",
+                        "surface-tint": "#005db6",
+                        "surface": "#f7fafc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#424752",
+                        "secondary": "#006a6a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tonal-shift {
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-extrabold tracking-tighter text-blue-800 dark:text-blue-300 font-headline">
+                MedBridge Travel
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-manrope font-bold text-sm tracking-tight text-blue-700 dark:text-blue-400 border-b-2 border-blue-700 pb-1" href="#">Find Treatment</a>
+<a class="font-manrope font-bold text-sm tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-300" href="#">Specialists</a>
+<a class="font-manrope font-bold text-sm tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-300" href="#">Destinations</a>
+<a class="font-manrope font-bold text-sm tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-300" href="#">How it Works</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-headline font-bold text-sm transition-all duration-300 hover:opacity-80 scale-95 active:duration-75">
+                Get Started
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center overflow-hidden bg-surface">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="z-10">
+<span class="inline-block px-4 py-1.5 mb-6 rounded-full bg-secondary-container text-on-secondary-container font-label text-[0.7rem] uppercase tracking-widest font-bold">
+                        Accredited Global Healthcare
+                    </span>
+<h1 class="text-6xl md:text-7xl font-headline font-extrabold text-on-background tracking-tight leading-[1.1] mb-8">
+                        Global Healthcare, <span class="text-primary">Simplified.</span>
+</h1>
+<p class="text-xl text-on-surface-variant leading-relaxed max-w-xl mb-10">
+                        Access world-class medical procedures at JCI-accredited institutions with up to 70% savings. We handle the logistics, you focus on healing.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                            Explore Treatments
+                        </button>
+<button class="bg-surface-container-lowest text-primary border border-outline-variant/30 px-8 py-4 rounded-xl font-headline font-bold text-lg hover:bg-surface-container-low transition-all">
+                            Free Consultation
+                        </button>
+</div>
+<div class="mt-12 flex items-center gap-6">
+<div class="flex -space-x-3">
+<img class="w-12 h-12 rounded-full border-2 border-white object-cover" data-alt="portrait of a confident female doctor in white coat smiling in a modern clinic corridor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NqFcaBJTbc6gn6MxagX4IFDhWC_nZLS35PM0wQxO4HcvezVCxYQLk2D5R-JVmFlI3CnL9QFGWijUj6yoNf7yMOYANiHkjeIn2fFb4II_hTIGCEXESoHwJjxiLRECYUCAz7b_qSRBFTZneawOlghFJjpTGIy0UgeIAB9IPQ7C3Onc_JjciY9Wrl42S6u4TC4hilsNv3YXZlk-grGhhsiaVh2Gad1DzLDIHRD81NIx2PsvMChMrXerG8nDY0ak4yDumf9JCFYnUhc"/>
+<img class="w-12 h-12 rounded-full border-2 border-white object-cover" data-alt="portrait of a professional male surgeon in blue scrubs with stethoscope around neck" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCHxXSabnDdylhpSzsI5lQp2qF_SB1qx001vXVnH3JHJUkwTYdFatxOBxSQ51GrFmwVcbgHIQ6phTraqs6DhWzQm6FDjq5ttSuA6ElfIL4qiRBK70qzjNs4XQbyMc0agP2dyeDUet2-2mGxSSc8ef0u59fWzszSWwbXvJgwawEzDuZKQi8qsRxcZMkkSSDJJGxjzlGODsvn9xYXaOQl61jhzKKgk2iT2Z0Rjj9DaYgWnFP9oFFJyibKVgBjpAxRRrljJNJQ6m38B0"/>
+<img class="w-12 h-12 rounded-full border-2 border-white object-cover" data-alt="smiling mature doctor in professional medical setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopFmUgS8ED63_rxh2QlqVuSpvuQTqjUleWRRV5nJZKU6mrsIERt7bgcRtpkTWB4deZn0nNNgBJD-HQE7jkkMBbVdsYxbBxnPp7q5dzbswOsMCTYWl-VL1l2-ab3ODb1DkqZhexxek_UODas_oMr1nrJo_6_YjgY6PqKSnZy8sVgw7w6n7FiMZQ6wdMSvRbnl5Q-c8ffmoIZbCKBCA3MZLbePg2LqEEFu4ytNI1dD0TXNDaM-mQ1ykv25RzqnuHFhbjLMp-3XU83k"/>
+</div>
+<p class="text-sm font-label font-medium text-on-surface-variant">
+                            Trusted by <span class="text-primary font-bold">2,500+</span> international patients
+                        </p>
+</div>
+</div>
+<div class="relative hidden lg:block">
+<div class="absolute -top-20 -right-20 w-96 h-96 bg-secondary-fixed/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-20 -left-20 w-96 h-96 bg-primary-fixed/20 rounded-full blur-3xl"></div>
+<div class="relative rounded-[2rem] overflow-hidden shadow-2xl">
+<img class="w-full h-[600px] object-cover" data-alt="bright modern hospital lobby with floor-to-ceiling windows and luxury minimalist interior design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOgTfyv2WBcHT5Ch_IpwrEfTo19S-rhk8jLXNUYnBWw4OZJ3_Tk2T2lyjd4MPARFi3o_tSCOxK6pBzeHgnp0_EUO80h0NEwh8RqCpQJKVO_VwzzddQn3bQPjK1BrB_QC6OeU1nlYyjuLkCYyj0xcvef67EJukOYWc55xcaf0nDglEcuR5-I4KTiyca575Sd4KzyQ0LeFPAkogTkgNSN-oNwx1_utPa9CYaodzPl_JgVHR-BRRCcJe8ecDdvqe4tmOeb56JbMwfgIg"/>
+<div class="absolute bottom-8 left-8 right-8 p-6 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl">
+<div class="flex items-center gap-4">
+<div class="bg-secondary p-3 rounded-lg text-white">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">JCI Accredited Facility</p>
+<p class="text-sm text-on-surface-variant">Top-tier safety and clinical standards</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Badges -->
+<section class="py-12 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8 flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">approval_delegation</span>
+<span class="font-headline font-extrabold text-xl tracking-tighter">JCI ACCREDITED</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">workspace_premium</span>
+<span class="font-headline font-extrabold text-xl tracking-tighter">ISO 9001:2015</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">health_and_safety</span>
+<span class="font-headline font-extrabold text-xl tracking-tighter">MTQUA CERTIFIED</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">public</span>
+<span class="font-headline font-extrabold text-xl tracking-tighter">GLOBAL HEALTHCARE</span>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16">
+<h2 class="text-4xl font-headline font-bold text-on-background mb-4">Why Patients Trust MedBridge</h2>
+<p class="text-on-surface-variant max-w-2xl">We bridge the gap between world-class medical expertise and patients seeking affordable, high-quality care options worldwide.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="md:col-span-2 bg-surface-container-lowest p-10 rounded-[2rem] shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
+<div class="max-w-md">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">local_hospital</span>
+</div>
+<h3 class="text-3xl font-headline font-bold mb-4">Verified Accredited Hospitals</h3>
+<p class="text-on-surface-variant text-lg">Every facility in our network undergoes rigorous vetting to ensure they meet international clinical standards and safety protocols.</p>
+</div>
+<div class="mt-8 flex gap-4">
+<span class="px-3 py-1 bg-surface-container rounded-md text-xs font-label uppercase font-bold tracking-wider text-on-surface-variant">JCI Standards</span>
+<span class="px-3 py-1 bg-surface-container rounded-md text-xs font-label uppercase font-bold tracking-wider text-on-surface-variant">On-site Audits</span>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="bg-primary p-10 rounded-[2rem] text-on-primary flex flex-col justify-between">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-8">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">Transparent Pricing</h3>
+<p class="text-on-primary/80">No hidden fees. Upfront package pricing that includes medical costs, accommodation, and transfers.</p>
+</div>
+<a class="mt-8 flex items-center gap-2 font-bold group" href="#">
+                            Learn more <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Feature 3 -->
+<div class="bg-secondary p-10 rounded-[2rem] text-on-secondary flex flex-col justify-between">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-8">
+<span class="material-symbols-outlined text-3xl">support_agent</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">Concierge Support</h3>
+<p class="text-on-secondary/80">Your dedicated medical coordinator assists with everything from records transfer to local travel.</p>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="md:col-span-2 bg-surface-container-low p-10 rounded-[2rem] flex items-center gap-12 overflow-hidden">
+<div class="flex-1">
+<h3 class="text-2xl font-headline font-bold mb-4">Multi-lingual Assistance</h3>
+<p class="text-on-surface-variant">Bridging the language barrier with professional translators and English-speaking medical staff across all our partner destinations.</p>
+</div>
+<div class="hidden sm:block flex-shrink-0">
+<img class="w-48 h-48 rounded-full object-cover border-8 border-white shadow-lg" data-alt="close up of medical professional using digital tablet in clean clinical environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf4HS6nl1VfNPi1KDCTgCEQurgfkFytCV0NYprvuIANkFob4_GpNAw73WbyLyOlHmIR_JehYFEVyNV7ARi3D41GaftS6v3TZOgBBwvh_GkH1oMTS5KGQ5BCe7EP3y6FXcxIhKEXGsvbCFld_ITu_A0_eVC1qB2dKNwyxETKEJm5TVmFogr0LS-CfcILxVzT5svO4R1YcdEXd5LptJ6MfDkYyCLME23ymoac4b2nzFc4dXzjxBnj7bj-tUrSQMtDNlmRKAVZg-gvqg"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-24 bg-surface-container-low relative">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<span class="text-primary font-label font-bold tracking-widest uppercase text-xs">The Roadmap</span>
+<h2 class="text-5xl font-headline font-bold text-on-background mt-4">How it Works</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Connector Line (Desktop) -->
+<div class="hidden md:block absolute top-20 left-1/4 right-1/4 h-px bg-outline-variant/30 border-t border-dashed"></div>
+<!-- Step 1 -->
+<div class="relative text-center">
+<div class="w-20 h-20 bg-surface-container-lowest rounded-full flex items-center justify-center text-primary text-3xl font-headline font-bold mx-auto mb-8 shadow-sm border border-outline-variant/20 relative z-10">
+                            1
+                        </div>
+<h3 class="text-2xl font-headline font-bold mb-4">Search Treatment</h3>
+<p class="text-on-surface-variant">Browse our directory of specialties and select the procedure that meets your needs.</p>
+<div class="mt-6">
+<span class="material-symbols-outlined text-primary/40 text-4xl">search_insights</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative text-center">
+<div class="w-20 h-20 bg-primary text-on-primary rounded-full flex items-center justify-center text-3xl font-headline font-bold mx-auto mb-8 shadow-lg shadow-primary/20 relative z-10">
+                            2
+                        </div>
+<h3 class="text-2xl font-headline font-bold mb-4">Get Recommendations</h3>
+<p class="text-on-surface-variant">Receive personalized quotes and treatment plans from top international specialists within 48 hours.</p>
+<div class="mt-6">
+<span class="material-symbols-outlined text-primary/40 text-4xl">quick_reference_all</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative text-center">
+<div class="w-20 h-20 bg-surface-container-lowest rounded-full flex items-center justify-center text-primary text-3xl font-headline font-bold mx-auto mb-8 shadow-sm border border-outline-variant/20 relative z-10">
+                            3
+                        </div>
+<h3 class="text-2xl font-headline font-bold mb-4">Travel &amp; Heal</h3>
+<p class="text-on-surface-variant">We coordinate your travel and care. Our concierge team meets you at your destination.</p>
+<div class="mt-6">
+<span class="material-symbols-outlined text-primary/40 text-4xl">medical_services</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-xl">
+<h2 class="text-4xl font-headline font-bold text-on-background mb-4">Voices of Recovery</h2>
+<p class="text-on-surface-variant text-lg">Discover the journeys of patients who chose MedBridge Travel for their life-changing medical procedures.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-4 rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-4 rounded-full border border-outline-variant bg-primary text-white hover:opacity-90 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/10 shadow-sm">
+<div class="flex text-secondary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface text-lg italic leading-relaxed mb-8">
+                            "The savings were incredible, but the level of care was what truly surprised me. The hospital in Bangkok felt more like a luxury hotel with surgical suites."
+                        </p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="headshot of a smiling middle aged man with professional look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPyJG13qDzmPjHWn2o1ASX_NS3VTj7vkHI-cX3gAMmOPtWVa8Onn0dQjnfU47PMeRiQEp_bvAVBbpzfmWeJMBNzeA_3_jQ4CjyehCRYmgRQ7IDxu4nhoUJtqAMtLDqvYKep6iWhO3gWSojzRfWYpxNf5oQT6acegkaXElb5uYa4SJX5wvDlpnLzohoJCsMznDcbN_vSH9woTJGMPDS7Ds4oG2v6AMR-dil46ThUcBHfvIpA9QtkNVjjKsP9tdvaiIB4xIOdKh1G7E"/>
+<div>
+<h4 class="font-headline font-bold text-on-surface">David Miller</h4>
+<p class="text-xs font-label uppercase text-on-surface-variant">Hip Replacement • United States</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/10 shadow-sm">
+<div class="flex text-secondary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface text-lg italic leading-relaxed mb-8">
+                            "MedBridge took care of every single detail. My coordinator, Sarah, was available 24/7. I never felt alone in a foreign country."
+                        </p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="portrait of a woman in her late 30s with a warm genuine smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADWmnLPiT_rNtpoJ0M1NmcmVi5FrKL9gdear7dCgDvR7a1-bT5Yzl_cDFKeFa2IX4vTJDiUSxibrppgW7Zwqwuocu1D_pdmZNpMlvEicHkO75-0gxxT7Uf6NXIvJZDlUOZ9D4NbqPGnMLzXftJ2KMziSKux_zp5DvnYuG_UpL72gHmzDUbepDn_XcwjLlm8ypvckG4d1zRCPpMcZ3emALYhcBlCZNA9dTBoYX3g1WxIFXsyPTWH3MtlMf3W3leW-m5Qjc7hoKdarI"/>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Elena Rodriguez</h4>
+<p class="text-xs font-label uppercase text-on-surface-variant">Dental Restoration • Canada</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/10 shadow-sm">
+<div class="flex text-secondary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface text-lg italic leading-relaxed mb-8">
+                            "The quality of the specialists is world-class. My surgeon in Istanbul was trained at Harvard and the results are better than I hoped for."
+                        </p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="friendly looking man in casual business attire smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwe4rO3l8mPzdy99DoAqwPLBBUo3HvxZr5C5-ejXASixlJ6w-wmoXFiyhwyq0LguMb4GXkktWPe8dupnBZDr7TkdPkWAGdXzuvegt-H41ximD5bLrk8m5_uPwqtf5tkbFGlCb1XET0E0sNO7bffJWc9Uo8SgNhfyUhgyBIwJ7YTMBFhTsxCUXxXgCp1xmPmIqzLC5DhBpbr7Afcz7BjEvv9wiTRQDMnAw2tXdzUM7JAHOdovP0rBq_MUxB1OLoviVCtdhClBbQYls"/>
+<div>
+<h4 class="font-headline font-bold text-on-surface">James Wilson</h4>
+<p class="text-xs font-label uppercase text-on-surface-variant">LASIK Surgery • United Kingdom</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 max-w-7xl mx-auto px-8">
+<div class="bg-primary rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-container opacity-50"></div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold text-on-primary mb-8 tracking-tight">Ready to begin your healing journey?</h2>
+<p class="text-on-primary-container text-xl mb-12 opacity-90 leading-relaxed">Join thousands of patients who have already transformed their lives through global healthcare excellence.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-6">
+<button class="bg-white text-primary px-10 py-5 rounded-2xl font-headline font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all">Get a Free Quote</button>
+<button class="bg-primary-container border border-on-primary-container/20 text-on-primary-container px-10 py-5 rounded-2xl font-headline font-bold text-lg hover:bg-white/10 transition-all">Contact a Specialist</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-7xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-slate-900 dark:text-white font-headline mb-2">MedBridge Travel</div>
+<p class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    © 2024 MedBridge Travel. Accredited Global Healthcare Concierge.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">Privacy Policy</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">Terms of Service</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">JCI Accreditation</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">ISO Certified</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedBridge Travel | Patient Intake</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c2c6d4",
+                        "secondary-fixed": "#8cf3f3",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#727783",
+                        "surface-container-high": "#e5e9eb",
+                        "on-tertiary-fixed": "#001e30",
+                        "primary-fixed": "#d6e3ff",
+                        "tertiary": "#004c72",
+                        "surface-container-low": "#f1f4f6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d7dadc",
+                        "tertiary-fixed-dim": "#8ecdff",
+                        "secondary-container": "#8cf3f3",
+                        "on-secondary-fixed": "#002020",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-container": "#007070",
+                        "on-tertiary-fixed-variant": "#004b70",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e0e3e5",
+                        "on-background": "#181c1e",
+                        "surface-container": "#ebeef0",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#005eb8",
+                        "primary": "#00478d",
+                        "on-error": "#ffffff",
+                        "on-surface": "#181c1e",
+                        "tertiary-fixed": "#cae6ff",
+                        "background": "#f7fafc",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef1f3",
+                        "secondary-fixed-dim": "#6fd7d6",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "on-primary-fixed-variant": "#00468c",
+                        "surface-bright": "#f7fafc",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary-container": "#c8daff",
+                        "tertiary-container": "#006595",
+                        "on-tertiary-container": "#b9deff",
+                        "inverse-primary": "#a9c7ff",
+                        "surface-tint": "#005db6",
+                        "surface": "#f7fafc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#424752",
+                        "secondary": "#006a6a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift { transition: background-color 0.3s ease; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-extrabold tracking-tighter text-blue-800 dark:text-blue-300">
+                MedBridge Travel
+            </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-manrope font-bold text-sm tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-300" href="#">Find Treatment</a>
+<a class="font-manrope font-bold text-sm tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-300" href="#">Specialists</a>
+<a class="font-manrope font-bold text-sm tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-300" href="#">Destinations</a>
+<a class="font-manrope font-bold text-sm tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-300" href="#">How it Works</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-md font-bold text-sm transition-all duration-300 hover:opacity-80 scale-95 active:duration-75">
+                Get Started
+            </button>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-12 px-4 md:px-8">
+<div class="max-w-4xl mx-auto">
+<!-- Progress Indicator -->
+<div class="mb-12">
+<div class="flex justify-between items-center mb-4">
+<span class="text-label-md font-bold text-primary uppercase tracking-widest">Step 2 of 3: Patient Profile</span>
+<span class="text-label-md font-semibold text-outline">66% Complete</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-2/3 h-full bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Multi-step Container -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Main Form Area -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-8 md:p-10 rounded-xl shadow-sm">
+<!-- Step 1 (Hidden Logic Simulation - Showing Step 2/3 focus per request style) -->
+<!-- In a real app, these would toggle. Here we present a cohesive "active" journey -->
+<form class="space-y-10">
+<!-- Header for Current Step -->
+<div class="space-y-2">
+<h1 class="text-3xl font-extrabold text-on-surface tracking-tight">Tell us a bit about yourself</h1>
+<p class="text-on-surface-variant leading-relaxed">Help our medical concierge team understand your unique needs and travel preferences.</p>
+</div>
+<!-- Form Sections -->
+<div class="space-y-8">
+<!-- Age Range -->
+<div class="space-y-4">
+<label class="block text-sm font-bold text-on-surface-variant uppercase tracking-wider">Age Range</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<button class="py-3 px-4 border border-outline-variant rounded-lg text-sm font-medium hover:bg-surface-container-low transition-colors text-center" type="button">18-30</button>
+<button class="py-3 px-4 border-2 border-primary bg-primary-container/10 text-primary rounded-lg text-sm font-bold text-center" type="button">31-50</button>
+<button class="py-3 px-4 border border-outline-variant rounded-lg text-sm font-medium hover:bg-surface-container-low transition-colors text-center" type="button">51-65</button>
+<button class="py-3 px-4 border border-outline-variant rounded-lg text-sm font-medium hover:bg-surface-container-low transition-colors text-center" type="button">65+</button>
+</div>
+</div>
+<!-- Health Condition -->
+<div class="space-y-4">
+<label class="block text-sm font-bold text-on-surface-variant uppercase tracking-wider">Health Condition Summary</label>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary focus:bg-white transition-all resize-none text-on-surface" placeholder="Please describe any chronic conditions, allergies, or recent surgeries..." rows="4"></textarea>
+<div class="absolute bottom-3 right-3">
+<span class="material-symbols-outlined text-outline text-lg">medical_information</span>
+</div>
+</div>
+</div>
+<!-- Travel Window -->
+<div class="space-y-4">
+<label class="block text-sm font-bold text-on-surface-variant uppercase tracking-wider">Preferred Travel Window</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-center bg-surface-container-low p-4 rounded-lg cursor-pointer hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-primary mr-3 group-hover:scale-110 transition-transform">calendar_today</span>
+<div>
+<p class="text-sm font-bold text-on-surface">Within 3 months</p>
+<p class="text-xs text-outline">Immediate planning</p>
+</div>
+</div>
+<div class="flex items-center bg-surface-container-low p-4 rounded-lg cursor-pointer hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-primary mr-3 group-hover:scale-110 transition-transform">event_upcoming</span>
+<div>
+<p class="text-sm font-bold text-on-surface">3-12 months</p>
+<p class="text-xs text-outline">Flexible scheduling</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="flex items-center justify-between pt-8 border-t border-surface-container">
+<button class="flex items-center text-primary font-bold text-sm hover:underline" type="button">
+<span class="material-symbols-outlined mr-1 text-lg">arrow_back</span>
+                                Previous Step
+                            </button>
+<button class="bg-primary text-on-primary px-10 py-4 rounded-lg font-bold text-base shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center" type="button">
+                                Continue to Priorities
+                                <span class="material-symbols-outlined ml-2">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Sidebar Contextual Info (Asymmetric Layout) -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Helper Card -->
+<div class="bg-secondary-container/30 p-6 rounded-xl border-l-4 border-secondary">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<h3 class="font-bold text-on-secondary-container">Clinical Privacy</h3>
+</div>
+<p class="text-sm text-on-secondary-container/80 leading-relaxed">
+                            Your medical data is encrypted and only shared with JCI-accredited clinics you explicitly select.
+                        </p>
+</div>
+<!-- Image/Editorial Anchor -->
+<div class="relative group overflow-hidden rounded-xl h-64 shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Modern medical facility hallway with soft natural lighting and clean white walls creating a serene atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCZXtJGtxKpuwLelkt-CGD2TDRvGCFG8eLDrULQrV66e7-s0QdwyiiiVXoSX86g36WL819mzPYUPa9A7S7rCymv6JEKwcEd8vFIvUfumoU7z0M_wlM-AtXDuQk0egHayygRzspxJ90E1BzjsgnzMu3bZ10d9SOQMjjb0DDqQ364iQZRFBbUrgFJypGHR2s5eUzG-efbtLOTE-kRk_U1plMO6Dhxt2QCHtVYHT6hXKWQEIKOx1NV2piTHJRW7fHS_aRPF8o-D7ylkU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-6">
+<p class="text-white text-xs font-bold uppercase tracking-widest mb-1">Our Network</p>
+<h4 class="text-white font-bold">World-class facilities at your fingertips.</h4>
+</div>
+</div>
+<!-- Step 3 Preview (Priority) -->
+<div class="bg-surface-container-low p-6 rounded-xl opacity-60">
+<h4 class="text-sm font-bold text-outline uppercase tracking-wider mb-4">Upcoming: Priority Selection</h4>
+<div class="space-y-3">
+<div class="h-10 bg-white rounded-md border border-outline-variant flex items-center px-3 text-xs text-outline">
+<span class="material-symbols-outlined text-sm mr-2">savings</span> Cost-Effective
+                            </div>
+<div class="h-10 bg-white rounded-md border border-outline-variant flex items-center px-3 text-xs text-outline">
+<span class="material-symbols-outlined text-sm mr-2">balance</span> Balanced
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full">
+<div class="text-lg font-bold text-slate-900 dark:text-white mb-4 md:mb-0">
+                MedBridge Travel
+            </div>
+<div class="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Privacy Policy</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Terms of Service</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">JCI Accreditation</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Contact Support</a>
+</div>
+<p class="font-inter text-[10px] uppercase tracking-widest text-slate-400">
+                © 2024 MedBridge Travel. Accredited Global Healthcare Concierge.
+            </p>
+</div>
+</footer>
+<!-- Search Dropdown Implementation Mockup (Step 1 Visual Elements) -->
+<div class="hidden">
+<!-- This represents the searchable dropdown logic from Step 1 for UI completeness -->
+<div class="relative w-full">
+<input class="w-full bg-surface-container-high border-none rounded-lg p-4 pl-12 text-on-surface" placeholder="Search procedures (e.g. Dental Implants)" type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<div class="absolute mt-2 w-full bg-white shadow-xl rounded-lg overflow-hidden border border-surface-container">
+<div class="p-3 hover:bg-surface-container-low cursor-pointer border-b border-surface-container-low">
+<p class="font-bold text-sm text-primary">Dental Implants</p>
+<p class="text-xs text-outline">Restorative Dentistry</p>
+</div>
+<div class="p-3 hover:bg-surface-container-low cursor-pointer border-b border-surface-container-low">
+<p class="font-bold text-sm text-primary">Hip Replacement</p>
+<p class="text-xs text-outline">Orthopedic Surgery</p>
+</div>
+<div class="p-3 hover:bg-surface-container-low cursor-pointer">
+<p class="font-bold text-sm text-primary">Rhinoplasty</p>
+<p class="text-xs text-outline">Cosmetic Surgery</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "outline-variant": "#c2c6d4",
+                  "secondary-fixed": "#8cf3f3",
+                  "inverse-surface": "#2d3133",
+                  "outline": "#727783",
+                  "surface-container-high": "#e5e9eb",
+                  "on-tertiary-fixed": "#001e30",
+                  "primary-fixed": "#d6e3ff",
+                  "tertiary": "#004c72",
+                  "surface-container-low": "#f1f4f6",
+                  "error": "#ba1a1a",
+                  "surface-dim": "#d7dadc",
+                  "tertiary-fixed-dim": "#8ecdff",
+                  "secondary-container": "#8cf3f3",
+                  "on-secondary-fixed": "#002020",
+                  "primary-fixed-dim": "#a9c7ff",
+                  "on-error-container": "#93000a",
+                  "on-tertiary": "#ffffff",
+                  "surface-container-highest": "#e0e3e5",
+                  "on-secondary-container": "#007070",
+                  "on-tertiary-fixed-variant": "#004b70",
+                  "error-container": "#ffdad6",
+                  "surface-variant": "#e0e3e5",
+                  "on-background": "#181c1e",
+                  "surface-container": "#ebeef0",
+                  "on-primary": "#ffffff",
+                  "primary-container": "#005eb8",
+                  "primary": "#00478d",
+                  "on-error": "#ffffff",
+                  "on-surface": "#181c1e",
+                  "tertiary-fixed": "#cae6ff",
+                  "background": "#f7fafc",
+                  "on-secondary": "#ffffff",
+                  "inverse-on-surface": "#eef1f3",
+                  "secondary-fixed-dim": "#6fd7d6",
+                  "on-secondary-fixed-variant": "#004f4f",
+                  "on-primary-fixed-variant": "#00468c",
+                  "surface-bright": "#f7fafc",
+                  "on-primary-fixed": "#001b3d",
+                  "on-primary-container": "#c8daff",
+                  "tertiary-container": "#006595",
+                  "on-tertiary-container": "#b9deff",
+                  "inverse-primary": "#a9c7ff",
+                  "surface-tint": "#005db6",
+                  "surface": "#f7fafc",
+                  "surface-container-lowest": "#ffffff",
+                  "on-surface-variant": "#424752",
+                  "secondary": "#006a6a"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "fontFamily": {
+                  "headline": ["Manrope"],
+                  "body": ["Inter"],
+                  "label": ["Inter"]
+          }
+        },
+      },
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
-
-    body {
-      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.65;
-      color: var(--text);
-      background: linear-gradient(180deg, #f4f8ff 0%, var(--bg) 40%, #eef5ff 100%);
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(92%, var(--max-width));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(8px);
-      background: rgba(247, 249, 252, 0.9);
-      border-bottom: 1px solid rgba(221, 229, 240, 0.8);
-    }
-
-    .nav-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.9rem 0;
-    }
-
-    .logo {
-      font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: 0.2px;
-      color: var(--primary-dark);
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.15rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      color: var(--primary);
-    }
-
-    .menu-btn {
-      display: none;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.45rem 0.7rem;
-      background: var(--surface);
-      font-weight: 700;
-      color: var(--primary-dark);
-      cursor: pointer;
-    }
-
-    .hero {
-      padding: 4.5rem 0 3rem;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 1.4rem;
-      align-items: stretch;
-    }
-
-    .hero-card,
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.6rem;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.7rem;
-      font-size: 0.9rem;
-      background: #e9f2ff;
-      border-radius: 999px;
-      padding: 0.3rem 0.75rem;
-    }
-
-    h1 {
-      font-size: clamp(1.7rem, 2.5vw, 2.65rem);
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: #0f1f3a;
-    }
-
-    p {
-      color: var(--muted);
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      max-width: 60ch;
-    }
-
-    .cta-row {
-      margin-top: 1.4rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .btn {
-      border: none;
-      padding: 0.75rem 1.1rem;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    .btn-light {
-      background: #edf3ff;
-      color: var(--primary-dark);
-      border: 1px solid #d5e4ff;
-    }
-
-    .btn-light:hover {
-      background: #e4eeff;
-    }
-
-    .stat-card h3 {
-      color: #0f1f3a;
-      margin-bottom: 0.5rem;
-      font-size: 1.05rem;
-    }
-
-    .stat-list {
-      margin-top: 1rem;
-      display: grid;
-      gap: 0.7rem;
-    }
-
-    .stat {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.7rem 0.8rem;
-      background: #fbfdff;
-    }
-
-    .stat strong {
-      color: var(--primary-dark);
-      font-size: 1.1rem;
-      display: block;
-    }
-
-    main section {
-      padding: 1rem 0 2.6rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.4rem, 2vw, 2rem);
-      margin-bottom: 0.75rem;
-      color: #12213f;
-    }
-
-    .section-subtitle {
-      margin-bottom: 1.3rem;
-      max-width: 70ch;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.1rem;
-      box-shadow: 0 6px 20px rgba(16, 24, 40, 0.05);
-    }
-
-    .card h3 {
-      margin-bottom: 0.45rem;
-      color: #0f2b52;
-      font-size: 1.06rem;
-    }
-
-    .flow {
-      counter-reset: step;
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .step {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1rem 1rem 3.1rem;
-      position: relative;
-    }
-
-    .step::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      left: 1rem;
-      top: 0.95rem;
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #fff;
-      background: var(--primary);
-    }
-
-    .pricing-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-
-    .price-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1rem;
-      box-shadow: 0 6px 20px rgba(16, 24, 40, 0.05);
-      position: relative;
-    }
-
-    .badge {
-      position: absolute;
-      top: 0.8rem;
-      right: 0.8rem;
-      font-size: 0.73rem;
-      font-weight: 700;
-      color: #075f48;
-      background: #d4f8ee;
-      border-radius: 999px;
-      padding: 0.18rem 0.5rem;
-    }
-
-    .price-card h3 {
-      margin-bottom: 0.4rem;
-      color: #12213f;
-    }
-
-    .price {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 0.2rem;
-    }
-
-    .meta {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .price-card ul {
-      list-style: none;
-      display: grid;
-      gap: 0.42rem;
-      color: #334155;
-      font-size: 0.95rem;
-    }
-
-    .price-card li::before {
-      content: "✓ ";
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .note {
-      margin-top: 1rem;
-      background: #eaf7f3;
-      border: 1px solid #c7ecdf;
-      color: #115a46;
-      border-radius: 12px;
-      padding: 0.9rem 1rem;
-      font-size: 0.95rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    footer {
-      margin-top: 2rem;
-      border-top: 1px solid #dbe5f2;
-      padding: 1.5rem 0 2.4rem;
-      color: #61718a;
-      font-size: 0.92rem;
-      text-align: center;
-    }
-
-    @media (max-width: 920px) {
-      .hero-grid,
-      .grid-2,
-      .pricing-cards {
-        grid-template-columns: 1fr;
-      }
-
-      nav ul {
-        gap: 0.8rem;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .menu-btn {
-        display: inline-flex;
-      }
-
-      nav {
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        border-bottom: 1px solid var(--border);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.25s ease;
-      }
-
-      nav.open {
-        max-height: 240px;
-      }
-
-      nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 1.15rem;
-      }
+    .tonal-shift {
+      transition: background-color 0.3s ease;
     }
   </style>
 </head>
-<body>
-  <header>
-    <div class="container nav-wrap">
-      <a href="#top" class="logo">MedBridge <span>Travel</span></a>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
-      <nav id="mainNav" aria-label="Main navigation">
-        <ul>
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#process">How It Works</a></li>
-          <li><a href="#pricing">Pricing Transparency</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-container">
+<!-- TopNavBar from Shared Components -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-extrabold tracking-tighter text-blue-800 dark:text-blue-300 font-headline">MedBridge Travel</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-blue-700 dark:text-blue-400 border-b-2 border-blue-700 pb-1 font-manrope font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">Find Treatment</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 font-manrope font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">Specialists</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 font-manrope font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 font-manrope font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">How it Works</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-md font-bold text-sm transition-all duration-300 hover:opacity-80 scale-95 active:duration-75">Get Started</button>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
+<!-- Summary Section -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-secondary font-label text-[0.75rem] uppercase tracking-widest font-semibold block mb-2">Curated Matches</span>
+<h1 class="font-headline font-extrabold text-4xl md:text-5xl text-on-surface tracking-tight">3 Curated Options for Dental Implants</h1>
+<p class="mt-4 text-on-surface-variant max-w-2xl leading-relaxed">Based on your clinical intake for restorative dentistry, we've identified the top JCI-accredited facilities specializing in titanium implants with immediate loading protocols.</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low p-4 rounded-xl">
+<div class="flex flex-col">
+<span class="text-[0.65rem] uppercase tracking-tighter text-on-surface-variant">Intake ID</span>
+<span class="font-bold text-sm">#MBT-9942</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<button class="flex items-center gap-2 text-primary text-sm font-bold hover:underline">
+<span class="material-symbols-outlined text-sm">edit</span>
+            Modify Intake
+          </button>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Sidebar Filters -->
+<aside class="lg:col-span-3 space-y-8 sticky top-28">
+<div class="bg-surface-container-low rounded-xl p-6">
+<h3 class="font-headline font-bold text-lg mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">tune</span>
+            Refine Results
+          </h3>
+<!-- Price Range -->
+<div class="mb-8">
+<label class="block font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Price Range</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">Under $3,000</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">$3,000 - $6,000</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">$6,000+</span>
+</label>
+</div>
+</div>
+<!-- Destination -->
+<div class="mb-8">
+<label class="block font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Top Destinations</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">Thailand</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">Turkey</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">Mexico</span>
+</label>
+</div>
+</div>
+<!-- Accreditation -->
+<div>
+<label class="block font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Accreditation</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">JCI Accredited</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">ISO 9001 Certified</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Help Widget -->
+<div class="bg-primary-container rounded-xl p-6 text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline font-bold text-lg mb-2">Need Help Deciding?</h4>
+<p class="text-sm mb-4 opacity-90">Talk to a medical concierge for a free secondary review.</p>
+<button class="bg-on-primary-container text-primary font-bold py-2 px-4 rounded-md text-sm w-full transition-transform active:scale-95">Speak with an Expert</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-8xl">support_agent</span>
+</div>
+</div>
+</aside>
+<!-- Results Grid -->
+<section class="lg:col-span-9 space-y-8">
+<!-- Card 1: Premium Recommendation -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl border-t-4 border-secondary-fixed">
+<div class="md:w-1/3 relative h-64 md:h-auto">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="ultra-modern luxury hospital lobby with marble floors, floor-to-ceiling windows, and lush indoor plants in Bangkok" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKp0DTA9IideehJKEewYNqibexMn1No_RZmRrqCzEdkX05997HLtxfO7gtzMZU0zvNujxbtUJL7FpLuMdkZcmIEJ8jB8k205AS_OqdCIOLgNS_bSEUncGUuURU3unMPqXEulBJM3vvmq9qej3c57WjmO-joR9l6buhUC9kew-BcemVy7GJkuf-gyR8oWAack2Kv8zyjT8P1oI0tu3A2eAJikdFwN862YD7W10sqVlmoyXKbrPWVoZZUvSBf0fozALMoOyQUnw8bZU"/>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-widest shadow-lg">Recommended Choice</div>
+</div>
+<div class="md:w-2/3 p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline font-extrabold text-2xl text-on-surface">Bumrungrad International Hospital</h2>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mt-1">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+                    Bangkok, Thailand
+                  </div>
+</div>
+<div class="text-right">
+<div class="text-3xl font-headline font-black text-primary">$4,500</div>
+<div class="text-[0.65rem] uppercase font-bold text-on-surface-variant tracking-wider">All-Inclusive Package</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mb-6">
+<div class="flex text-secondary-fixed-dim">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-sm font-bold text-on-surface">4.9</span>
+<span class="text-xs text-on-surface-variant">(1,240 Patient Reviews)</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">workspace_premium</span> US-Trained Doctors
+                </span>
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">bed</span> Private Recovery Suite
+                </span>
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">verified</span> JCI Accredited
+                </span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-6">
+<a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="#">
+                View Treatment Plan <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-md font-bold text-sm transition-all hover:bg-primary-container">Select Package</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Value Option -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl">
+<div class="md:w-1/3 relative h-64 md:h-auto">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="clean minimal high-tech dental operatory with teal accents and ergonomic equipment in Istanbul Turkey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeNtSm2-87uAYfJ1UZQ5J5TLHrlAzyyVWkpVYQtsKDwmdlMcnGLVNzX_OGQgKQYi9An6-j_VWq7y3p0-WqufCZdVQUA5YcnYRsc-gvqPb3r7quPcLUidWCkv79MNFtCmOn2q4NT79BQZYtvxmdyxH0hF1euL6ECXekmKaafsHUzuufUBB7QKg98Yil27Gb5OJmaSgC8MImxh7dBy8WmuBP4t2w9lFsHt0blk0Iwj0KhYu87eCE-nXutzGWSyIP4gwyz5KnlJCbUn4"/>
+</div>
+<div class="md:w-2/3 p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline font-extrabold text-2xl text-on-surface">Istanbul Aesthetic Center</h2>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mt-1">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+                    Istanbul, Turkey
+                  </div>
+</div>
+<div class="text-right">
+<div class="text-3xl font-headline font-black text-primary">$3,200</div>
+<div class="text-[0.65rem] uppercase font-bold text-on-surface-variant tracking-wider">Estimated Price</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mb-6">
+<div class="flex text-secondary-fixed-dim">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+<span class="text-sm font-bold text-on-surface">4.7</span>
+<span class="text-xs text-on-surface-variant">(850 Patient Reviews)</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">airport_shuttle</span> VIP Airport Transfer
+                </span>
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">hotel</span> 4-Star Hotel Stay
+                </span>
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">translate</span> Multilingual Staff
+                </span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-6">
+<a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="#">
+                Explore Destination <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<button class="bg-secondary-container text-on-secondary-container px-8 py-3 rounded-md font-bold text-sm transition-all hover:brightness-95">Select Package</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Near-Home Choice -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl">
+<div class="md:w-1/3 relative h-64 md:h-auto">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="modern glass hospital facade reflecting bright blue sky in San Jose Costa Rica" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3w_SYK4Zr9Cpz636_iea2dCD0spFZ5o3Yqy8jH7rE42s4HwSQceNBDaFzjihGnXuFMFy64_Z1SdtnuoDODg16XrRTSaSKsBXe75qGmjzihyDz_WFfd1-i85BX4b-KHTBzgA6fSTmWJiTgsu0__LUYbFk0OtMRHDwUwRDkNycl013udjhbcNBXczR9lCIOodgOsEg1t5si19fesQZSdzYpkrHrjju_YpNsw2vHeR-lTlgp7_GHo3-VNmyKuhC_tSBoBptTX_tEnHU"/>
+</div>
+<div class="md:w-2/3 p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline font-extrabold text-2xl text-on-surface">CIMA Hospital San José</h2>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mt-1">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+                    San José, Costa Rica
+                  </div>
+</div>
+<div class="text-right">
+<div class="text-3xl font-headline font-black text-primary">$5,100</div>
+<div class="text-[0.65rem] uppercase font-bold text-on-surface-variant tracking-wider">Premium Package</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mb-6">
+<div class="flex text-secondary-fixed-dim">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="text-sm font-bold text-on-surface">4.8</span>
+<span class="text-xs text-on-surface-variant">(512 Patient Reviews)</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">flight_land</span> Minimal Travel Time
+                </span>
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">groups</span> High Success Rate
+                </span>
+<span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">health_and_safety</span> Aftercare Program
+                </span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-6">
+<a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="#">
+                Doctor Credentials <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<button class="bg-secondary-container text-on-secondary-container px-8 py-3 rounded-md font-bold text-sm transition-all hover:brightness-95">Select Package</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer from Shared Components -->
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-0">
+<div class="text-lg font-bold text-slate-900 dark:text-white">MedBridge Travel</div>
+<p class="font-inter text-[0.65rem] uppercase tracking-widest text-slate-500 dark:text-slate-400">© 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">Privacy Policy</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">Terms of Service</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">JCI Accreditation</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">ISO Certified</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>
+<!DOCTYPE html>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <article class="hero-card reveal">
-          <span class="eyebrow">Healthcare Without Borders</span>
-          <h1>Affordable, Trusted, and Timely Medical Care for Americans Abroad</h1>
-          <p>
-            MedBridge Travel helps patients in the United States access high-quality international care at significantly lower costs.
-            Through our app and concierge team, we simplify provider selection, treatment planning, travel logistics, and support from first consultation to recovery.
-          </p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#process">Start Your Journey</a>
-            <a class="btn btn-light" href="#pricing">See Sample Pricing</a>
-          </div>
-        </article>
-        <aside class="stat-card reveal">
-          <h3>Why Patients Choose MedBridge Travel</h3>
-          <p>We remove the biggest barriers in U.S. healthcare: high costs, long wait times, and uncertainty about overseas treatment.</p>
-          <div class="stat-list">
-            <div class="stat">
-              <strong>3 curated options</strong>
-              Clear country and provider comparisons.
-            </div>
-            <div class="stat">
-              <strong>End-to-end concierge</strong>
-              Logistics, communication, and on-call assistance.
-            </div>
-            <div class="stat">
-              <strong>Flexible payment plans</strong>
-              Installments to make treatment more accessible.
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="overview">
-      <div class="container">
-        <h2 class="section-title reveal">Service Overview</h2>
-        <p class="section-subtitle reveal">
-          Access to affordable and timely healthcare in the U.S. remains difficult for many people. MedBridge Travel connects patients
-          with internationally accredited medical providers and guides them through every step of receiving treatment abroad with confidence.
-        </p>
-        <div class="grid-2">
-          <article class="card reveal">
-            <h3>The Challenge in the U.S.</h3>
-            <p>
-              Rising costs, long wait times, and gaps in insurance leave many Americans delaying or skipping essential care.
-              Even when high-quality alternatives exist overseas, most patients lack clear information, trusted recommendations, and logistical support.
-            </p>
-          </article>
-          <article class="card reveal">
-            <h3>The MedBridge Solution</h3>
-            <p>
-              Our platform combines intelligent matching, vetted providers, transparent options, and concierge coordination to make global healthcare
-              practical, safe, and financially realistic for medical and cosmetic procedures.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="features">
-      <div class="container">
-        <h2 class="section-title reveal">Key Features</h2>
-        <p class="section-subtitle reveal">A patient-centered model built on personalization, trust, and full journey support.</p>
-        <div class="grid-2">
-          <article class="card reveal">
-            <h3>Personalized Medical Matching</h3>
-            <p>Our research team reviews each case and matches patients with top doctors and facilities specialized in the requested treatment.</p>
-          </article>
-          <article class="card reveal">
-            <h3>Internationally Vetted Providers</h3>
-            <p>Partner clinics and hospitals are screened for credentials, treatment outcomes, quality standards, and patient safety performance.</p>
-          </article>
-          <article class="card reveal">
-            <h3>Concierge-Level Coordination</h3>
-            <p>We help with travel plans, accommodations, appointment scheduling, and communication with healthcare teams before and during travel.</p>
-          </article>
-          <article class="card reveal">
-            <h3>Fast Access to Care</h3>
-            <p>Patients can avoid long domestic wait times and receive timely interventions for both urgent and elective procedures.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <div class="container">
-        <h2 class="section-title reveal">How It Works</h2>
-        <p class="section-subtitle reveal">A simple, guided flow from request to recovery.</p>
-        <div class="flow">
-          <article class="step reveal">
-            <h3>1) Submit Your Procedure Request</h3>
-            <p>Download the app and enter your treatment goals, timeline, and preferences.</p>
-          </article>
-          <article class="step reveal">
-            <h3>2) Review Personalized Recommendations</h3>
-            <p>Receive suggestions based on patient outcomes, provider expertise, and country-specific strengths.</p>
-          </article>
-          <article class="step reveal">
-            <h3>3) Compare Top Options with Experts</h3>
-            <p>Our team helps evaluate quality of care, accommodations, and total trip costs to select the best fit.</p>
-          </article>
-          <article class="step reveal">
-            <h3>4) Confirm Plan and Payment</h3>
-            <p>Choose a package and payment structure, including installment options where available.</p>
-          </article>
-          <article class="step reveal">
-            <h3>5) Travel with Concierge Support</h3>
-            <p>Receive treatment abroad while our on-call concierge team supports your journey in real time.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="container">
-        <h2 class="section-title reveal">Pricing Transparency</h2>
-        <p class="section-subtitle reveal">
-          Patients receive clear, side-by-side estimates from multiple countries so they can make informed decisions without hidden surprises.
-        </p>
-        <div class="pricing-cards">
-          <article class="price-card reveal">
-            <h3>Option A</h3>
-            <p class="price">$7,900</p>
-            <p class="meta">Mexico - Partner Specialty Clinic</p>
-            <ul>
-              <li>Procedure cost included</li>
-              <li>Hospital and surgeon fees included</li>
-              <li>Travel coordination support</li>
-            </ul>
-          </article>
-          <article class="price-card reveal">
-            <span class="badge">Most Chosen</span>
-            <h3>Option B</h3>
-            <p class="price">$9,450</p>
-            <p class="meta">Costa Rica - Accredited Medical Center</p>
-            <ul>
-              <li>Procedure + post-op follow-up package</li>
-              <li>Accommodation planning support</li>
-              <li>On-call concierge assistance</li>
-            </ul>
-          </article>
-          <article class="price-card reveal">
-            <h3>Option C</h3>
-            <p class="price">$11,200</p>
-            <p class="meta">South Korea - Advanced Specialty Hospital</p>
-            <ul>
-              <li>Complex care with premium facilities</li>
-              <li>Translation and care coordination</li>
-              <li>Comprehensive outcome tracking</li>
-            </ul>
-          </article>
-        </div>
-        <p class="note reveal">
-          Every quote clearly separates clinical fees, travel-related costs, and optional upgrades. No hidden markups.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; <span id="year"></span> MedBridge Travel. Global healthcare access with confidence.</p>
-    </div>
-  </footer>
-
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const nav = document.getElementById("mainNav");
-
-    menuBtn.addEventListener("click", () => {
-      const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", String(!expanded));
-      nav.classList.toggle("open");
-    });
-
-    document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", () => {
-        nav.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    const reveals = document.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bumrungrad International Hospital | MedBridge Travel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c2c6d4",
+                    "secondary-fixed": "#8cf3f3",
+                    "inverse-surface": "#2d3133",
+                    "outline": "#727783",
+                    "surface-container-high": "#e5e9eb",
+                    "on-tertiary-fixed": "#001e30",
+                    "primary-fixed": "#d6e3ff",
+                    "tertiary": "#004c72",
+                    "surface-container-low": "#f1f4f6",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d7dadc",
+                    "tertiary-fixed-dim": "#8ecdff",
+                    "secondary-container": "#8cf3f3",
+                    "on-secondary-fixed": "#002020",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-container": "#007070",
+                    "on-tertiary-fixed-variant": "#004b70",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e0e3e5",
+                    "on-background": "#181c1e",
+                    "surface-container": "#ebeef0",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#005eb8",
+                    "primary": "#00478d",
+                    "on-error": "#ffffff",
+                    "on-surface": "#181c1e",
+                    "tertiary-fixed": "#cae6ff",
+                    "background": "#f7fafc",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eef1f3",
+                    "secondary-fixed-dim": "#6fd7d6",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "on-primary-fixed-variant": "#00468c",
+                    "surface-bright": "#f7fafc",
+                    "on-primary-fixed": "#001b3d",
+                    "on-primary-container": "#c8daff",
+                    "tertiary-container": "#006595",
+                    "on-tertiary-container": "#b9deff",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-tint": "#005db6",
+                    "surface": "#f7fafc",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#424752",
+                    "secondary": "#006a6a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-      });
-    }, { threshold: 0.12 });
-
-    reveals.forEach((el) => observer.observe(el));
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+        .tonal-shift {
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-extrabold tracking-tighter text-blue-800 dark:text-blue-300 font-headline">MedBridge Travel</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 font-headline font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">Find Treatment</a>
+<a class="text-blue-700 dark:text-blue-400 border-b-2 border-blue-700 pb-1 font-headline font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">Specialists</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 font-headline font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 font-headline font-bold text-sm tracking-tight transition-all duration-300 hover:opacity-80" href="#">How it Works</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-md font-headline font-bold text-sm transition-all duration-300 hover:opacity-80 scale-95 active:duration-75">
+                Get Started
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[716px] w-full overflow-hidden">
+<img alt="Bumrungrad Hospital Exterior" class="w-full h-full object-cover" data-alt="Wide cinematic shot of a modern glass skyscraper hospital at dusk, illuminated with soft blue lighting against a Bangkok skyline" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKqq9cpaETjRlWG6X-_325s-_g-5K34NDTR5JXhbwGVEh9kDwVdNpJjKImb9B5jd9-ShIsG1QrTrPyzX-f2jvxp3jX1DMB2Y3MygZ3jZKCpiieyqoahjEWYWzqk5r7AchG4UMIAxj6GaamvwWgoIsQWQyhUpX8JRIEB6--C__ItMzJqHITDX5InOtBUHxEvr5qe2d4VSjxGthX_s8_3b3fYcYFiXmMf3NS5UsaC1RCYU4XplXiQVV3UciT2Nmrgw66dUAMfgqF8d4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-12 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="inline-block bg-secondary-container text-on-secondary-container px-3 py-1 rounded-md text-[0.65rem] uppercase tracking-widest font-bold mb-4">World Class Institution</span>
+<h1 class="text-5xl md:text-7xl font-headline font-extrabold text-white tracking-tighter leading-none">Bumrungrad<br/>International</h1>
+<p class="text-white/90 mt-4 text-lg font-medium max-w-xl">The clinical sanctuary of SE Asia. Bridging medical excellence with luxury hospitality in the heart of Bangkok.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-white/10 backdrop-blur-xl p-4 rounded-xl border border-white/20">
+<div class="text-white font-headline font-bold text-2xl">4.9/5</div>
+<div class="text-white/70 text-xs uppercase tracking-wider">Patient Rating</div>
+</div>
+<div class="bg-white/10 backdrop-blur-xl p-4 rounded-xl border border-white/20">
+<div class="text-white font-headline font-bold text-2xl">70+</div>
+<div class="text-white/70 text-xs uppercase tracking-wider">Specialties</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Overview & Accreditation Bento -->
+<section class="py-24 px-8 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Overview -->
+<div class="lg:col-span-7 bg-surface-container-low p-12 rounded-xl">
+<h2 class="text-3xl font-headline font-extrabold mb-8 tracking-tight text-primary">A Legacy of Clinical Excellence</h2>
+<div class="space-y-6 text-on-surface-variant leading-relaxed text-lg">
+<p>Founded in 1980, Bumrungrad International Hospital is the first JCI-accredited hospital in Asia and one of the largest private multi-specialty medical centers in the world. Treating over 1.1 million patients annually from over 190 countries.</p>
+<p>Our commitment to patient safety and clinical outcomes is matched only by our dedication to personalized care. Each journey is managed by a dedicated international coordination team, ensuring seamless communication across languages and cultures.</p>
+</div>
+<div class="mt-12 grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-bold text-sm uppercase tracking-tight">1,300+ Physicians</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-bold text-sm uppercase tracking-tight">Multi-Lingual Staff</span>
+</div>
+</div>
+</div>
+<!-- Accreditation Sidebar -->
+<div class="lg:col-span-5 space-y-8">
+<div class="bg-surface-container-lowest border border-outline-variant/10 p-10 rounded-xl shadow-sm">
+<h3 class="text-xs uppercase tracking-[0.2em] font-bold text-secondary mb-6">Accreditations</h3>
+<div class="space-y-8">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container">verified</span>
+</div>
+<div>
+<div class="font-bold text-primary">JCI Accredited</div>
+<p class="text-xs text-on-surface-variant mt-1">Joint Commission International gold seal of approval for healthcare quality and safety.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container">security</span>
+</div>
+<div>
+<div class="font-bold text-primary">ISO 15189 Certified</div>
+<p class="text-xs text-on-surface-variant mt-1">International standard for clinical laboratories quality and competence.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container">award_star</span>
+</div>
+<div>
+<div class="font-bold text-primary">Global Health Accreditation</div>
+<p class="text-xs text-on-surface-variant mt-1">The only GHA-accredited hospital in Thailand with 'Excellence' rating.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Team Section -->
+<section class="py-24 px-8 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div class="max-w-xl">
+<h2 class="text-4xl font-headline font-extrabold text-primary mb-4">The Precision Team</h2>
+<p class="text-on-surface-variant">Our lead surgeons are board-certified experts with international training, specializing in minimally invasive and robotic-assisted procedures.</p>
+</div>
+<div class="hidden md:block">
+<button class="flex items-center gap-2 text-primary font-bold uppercase text-xs tracking-widest group">
+                            View All Specialists <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Specialist 1 -->
+<div class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+<div class="h-96 overflow-hidden">
+<img alt="Dr. Somchai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up portrait of a senior male surgeon in sterile blue scrubs, professional clinical setting, soft warm directional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkW1TJPD7w2rQIKCHes4RFYrJovt5rReLLttQvlBgeicKtSILPLyCiAGK_0-PxUHS9tKMAbQyQnYiiT-lwlt3GbkBAp_LT-M1SmUWllaUJfUFQGB5bvSEz77cWd7AWbv9w63Y0wVwUjY4CAxuNnPgIDoLDhMwow4z37Fcka4SD4i5S-XjAb25gylebKP7q8i4RPD0YJgCT-BdeJwin3llr5JBH1cvlFHR7JkX3RGp5Eruus8MDwGfbH3UQcgB8HoXWAlATbJzlWfk"/>
+</div>
+<div class="absolute bottom-6 left-6 right-6 p-6 bg-white/80 backdrop-blur-2xl rounded-lg border border-white/20">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline font-bold text-xl text-primary">Dr. Somchai P.</h4>
+<p class="text-xs uppercase tracking-widest text-secondary font-bold mt-1">Orthopedic Surgeon</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded font-bold">25+ YRS</span>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 flex gap-4">
+<div class="text-[10px] uppercase font-bold text-on-surface-variant">Harvard Medical Alum</div>
+<div class="text-[10px] uppercase font-bold text-on-surface-variant">JCI Expert</div>
+</div>
+</div>
+</div>
+<!-- Specialist 2 -->
+<div class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+<div class="h-96 overflow-hidden">
+<img alt="Dr. Nattaya" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Professional portrait of a female cardiac surgeon in a bright modern medical office, natural lighting, high-end medical travel aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNDQWVeFmxJOPTvOuUqYRALBNPczHjchWVkAPKXWZ0hY_97Z0oNSlqn1NGWM2waJmQFz7JnvfzNXkPiEXxUL0hUGF9J397FDoAN-xcWP6qSQaGmd5nurt3m2lLCOzDXeu3akih22EaEwt2BBwYMUSdr7t0i9CFDOYAOjUxTcr_aMb9U62jDFwp2JIuxADrkGI1rBMn3BxlYiIjwlRm1_RNlGh6F0A8VfPBtlFQTH9PnOy9eqoApJFjgosf3CrKBdY1aeNPXzQAfB0"/>
+</div>
+<div class="absolute bottom-6 left-6 right-6 p-6 bg-white/80 backdrop-blur-2xl rounded-lg border border-white/20">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline font-bold text-xl text-primary">Dr. Nattaya K.</h4>
+<p class="text-xs uppercase tracking-widest text-secondary font-bold mt-1">Cardiologist</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded font-bold">18+ YRS</span>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 flex gap-4">
+<div class="text-[10px] uppercase font-bold text-on-surface-variant">Johns Hopkins Training</div>
+<div class="text-[10px] uppercase font-bold text-on-surface-variant">Robotic Specialist</div>
+</div>
+</div>
+</div>
+<!-- Specialist 3 -->
+<div class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+<div class="h-96 overflow-hidden">
+<img alt="Dr. Chanon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Modern portrait of a male specialist in a high-tech medical environment with medical screens in background, professional and authoritative" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPVT2Z83ihNTCBetkDgncIqTfHLc1K9C5dIteCxUlAE-KLxyILczIxrZehpnCjBFcgqupfkecBrK8L60CMTU37hKRfYedhMIZRulk8UHsE3j2hXQXkKcSUYpKsV3ryXrwB3oU2j0Q6puDNThlzuk-duQQM8RNX6AqxEZ3vcvPHvPWAtdGL218rOaK9RtzIsCIkqASym8nUc9VHK_tgr9DLx5CdbTvtOYRZ0emk-omV-0DhijUAM9-8srv72uLgVfKs_Pr97lmsX8"/>
+</div>
+<div class="absolute bottom-6 left-6 right-6 p-6 bg-white/80 backdrop-blur-2xl rounded-lg border border-white/20">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline font-bold text-xl text-primary">Dr. Chanon R.</h4>
+<p class="text-xs uppercase tracking-widest text-secondary font-bold mt-1">Neurosurgeon</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded font-bold">20+ YRS</span>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 flex gap-4">
+<div class="text-[10px] uppercase font-bold text-on-surface-variant">Stanford Fellowship</div>
+<div class="text-[10px] uppercase font-bold text-on-surface-variant">Innovation Lead</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Breakdown -->
+<section class="py-24 px-8 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-headline font-extrabold text-primary mb-4 tracking-tight">Transparent Care Packages</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">No hidden fees. We believe in complete financial transparency for every medical journey.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="bg-surface-container-lowest p-12 rounded-xl shadow-lg border-t-4 border-secondary">
+<div class="mb-10">
+<h3 class="text-2xl font-headline font-bold text-primary">Comprehensive Hip Replacement</h3>
+<div class="mt-2 text-on-surface-variant">Standard International Package</div>
+</div>
+<div class="space-y-6 mb-12">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">medical_services</span>
+<span class="font-medium">Robotic-Assisted Surgery &amp; Implant</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">bed</span>
+<span class="font-medium">4 Nights in Executive Suite</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">pill</span>
+<span class="font-medium">Post-Op Medications &amp; Physiotherapy</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">flight_takeoff</span>
+<span class="font-medium">Airport Transfers &amp; Concierge Support</span>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/10">
+<div class="text-4xl font-headline font-extrabold text-primary">$18,500 <span class="text-sm font-normal text-on-surface-variant uppercase tracking-widest">USD (Estimated)</span></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-8 rounded-lg">
+<h4 class="font-headline font-bold text-primary mb-2">Pre-Op Shield</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Comprehensive health screenings and diagnostic tests performed before arrival or on-site.</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-lg">
+<h4 class="font-headline font-bold text-primary mb-2">Med-Bridge Concierge</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">24/7 dedicated support for travel arrangements, visa assistance, and recovery logistics.</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-lg">
+<div class="h-1 bg-secondary w-12 mb-6"></div>
+<p class="text-sm italic text-on-surface-variant">"The pricing was exactly as quoted, including the post-op meds. No surprises."</p>
+<div class="mt-4 text-[10px] font-bold uppercase tracking-widest">— James T., Seattle</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-lg">
+<h4 class="font-headline font-bold text-primary mb-2">Aftercare Sync</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Direct digital hand-off to your home physician for seamless post-recovery care.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Patient Reviews -->
+<section class="py-24 px-8 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-8">
+<div>
+<h2 class="text-4xl font-headline font-extrabold text-primary mb-2">Voices of Recovery</h2>
+<p class="text-on-surface-variant">Real stories from our global community of patients.</p>
+</div>
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-white transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm flex gap-8">
+<div class="hidden sm:block flex-shrink-0">
+<img alt="Patient Reviewer" class="w-20 h-20 rounded-full object-cover" data-alt="Portrait of a smiling mature man in a relaxed garden setting, soft natural light, warm and trustworthy atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGwEbB6NJS8GifWouek3uicHvQ-x9S7zjW_OJ7kOqZ1yXtX_dvnkzQULr3deV_elG8fxBbzFD9cmIYPBx7Vz1mIrYGs9CM-iBV_4gyChTJI5PUR3tCGkEpM-wJkjpx-doVo5tjYy0vuqSr46PBVojA_C-vynjp28QUm9ddWqwmUMsSKGI3Ce5fD-pesr-efi4OHvhNuMNHVz4pEEeoGCypzGNZHKMBktHGsZ4G7K22NdQVAuYLWnbyH-dUGic378LqG_RqlQ2Kthw"/>
+</div>
+<div>
+<div class="flex text-secondary-container gap-1 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface-variant italic mb-6 leading-relaxed">"The level of care I received at Bumrungrad surpassed anything I've experienced in London. From the airport pickup to the robotic surgery, everything was flawless."</p>
+<div>
+<div class="font-bold text-primary">Mark Sutherland</div>
+<div class="text-xs text-on-surface-variant uppercase tracking-widest">Knee Replacement • United Kingdom</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm flex gap-8">
+<div class="hidden sm:block flex-shrink-0">
+<img alt="Patient Reviewer" class="w-20 h-20 rounded-full object-cover" data-alt="Close up of a happy woman in her 40s in a sunny coastal environment, cinematic depth of field, authentic smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4RznnfbNK0tnZhVIE0uoqx7-0HJzImwYkTa_2i63TxB8Y7tHb1y7UJsByrSHc1MEa2gmHi03v-csvGOusJPabYeOv4_gzrooREyX3rKZWwehCwSUp83d8AHEyguFNL7kjv82C0j02xcuYRZC6esEWQ-WW8sQ2d0jO6iqPYTvzenCfQDRB-nxxlJeC8brbCIiuizPYIJAXgCz48SFrTtaaSh_eu-tgayZAoz-umLd6nvXdAgdCckKxElhZK9KMbk-sFtjq8o1A1GA"/>
+</div>
+<div>
+<div class="flex text-secondary-container gap-1 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface-variant italic mb-6 leading-relaxed">"The concierge team made me feel like a VIP. They handled all my visa paperwork and even helped my husband find great local tours during my recovery."</p>
+<div>
+<div class="font-bold text-primary">Sarah Chen</div>
+<div class="text-xs text-on-surface-variant uppercase tracking-widest">Cardiology Consult • Canada</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="py-24 px-8 bg-primary">
+<div class="max-w-4xl mx-auto text-center">
+<span class="text-secondary-fixed text-xs uppercase font-bold tracking-[0.3em] mb-6 block">Ready to Begin?</span>
+<h2 class="text-4xl md:text-6xl font-headline font-extrabold text-white mb-8 tracking-tight">Your Health Deserves No Borders.</h2>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="bg-white text-primary px-10 py-4 rounded-md font-headline font-bold text-lg hover:bg-secondary-fixed transition-colors">
+                        Book a Free Consultation
+                    </button>
+<button class="text-white border border-white/30 hover:border-white px-10 py-4 rounded-md font-headline font-bold text-lg transition-colors">
+                        Download Facility Guide
+                    </button>
+</div>
+<p class="text-white/60 mt-12 text-sm">Join 15,000+ international patients who choose MedBridge Travel annually.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-12 w-full max-w-7xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-slate-900 dark:text-white font-headline">MedBridge Travel</div>
+<p class="text-slate-500 dark:text-slate-400 text-[10px] mt-2 max-w-xs leading-relaxed uppercase tracking-widest">© 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors font-inter text-xs uppercase tracking-widest" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors font-inter text-xs uppercase tracking-widest" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors font-inter text-xs uppercase tracking-widest" href="#">JCI Accreditation</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors font-inter text-xs uppercase tracking-widest" href="#">ISO Certified</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors font-inter text-xs uppercase tracking-widest" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>
