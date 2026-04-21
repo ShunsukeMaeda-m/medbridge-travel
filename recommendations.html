@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
@@ -83,10 +83,19 @@
     .tonal-shift {
       transition: background-color 0.3s ease;
     }
+    .hospital-card {
+      transition: all 0.3s ease;
+    }
+    .hospital-card.hidden {
+      display: none;
+    }
+    #no-results {
+      display: none;
+    }
   </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-secondary-container">
-<!-- TopNavBar from Shared Components -->
+<!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
 <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
 <div class="text-2xl font-extrabold tracking-tighter text-blue-800 dark:text-blue-300 font-headline">MedBridge Travel</div>
@@ -134,15 +143,15 @@
 <label class="block font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Price Range</label>
 <div class="space-y-3">
 <label class="flex items-center gap-3 group cursor-pointer">
-<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="price-under3k" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">Under $3,000</span>
 </label>
 <label class="flex items-center gap-3 group cursor-pointer">
-<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="price-3k-6k" checked class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">$3,000 - $6,000</span>
 </label>
 <label class="flex items-center gap-3 group cursor-pointer">
-<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="price-over6k" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">$6,000+</span>
 </label>
 </div>
@@ -152,33 +161,48 @@
 <label class="block font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Top Destinations</label>
 <div class="space-y-3">
 <label class="flex items-center gap-3 group cursor-pointer">
-<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="dest-thailand" checked class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">Thailand</span>
 </label>
 <label class="flex items-center gap-3 group cursor-pointer">
-<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="dest-turkey" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">Turkey</span>
 </label>
 <label class="flex items-center gap-3 group cursor-pointer">
-<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="dest-mexico" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">Mexico</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input id="dest-costarica" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-primary transition-colors">Costa Rica</span>
 </label>
 </div>
 </div>
 <!-- Accreditation -->
-<div>
+<div class="mb-8">
 <label class="block font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Accreditation</label>
 <div class="space-y-3">
 <label class="flex items-center gap-3 group cursor-pointer">
-<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="acc-jci" checked class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">JCI Accredited</span>
 </label>
 <label class="flex items-center gap-3 group cursor-pointer">
-<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<input id="acc-iso" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
 <span class="text-sm text-on-surface group-hover:text-primary transition-colors">ISO 9001 Certified</span>
 </label>
 </div>
 </div>
+
+<!-- Apply Filters Button -->
+<button onclick="applyFilters()" class="w-full bg-primary text-on-primary py-3 px-4 rounded-lg font-headline font-bold text-sm hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+Apply Filters
+</button>
+
+<!-- Reset Button -->
+<button onclick="resetFilters()" class="w-full mt-2 border border-outline-variant text-on-surface-variant py-2 px-4 rounded-lg font-bold text-sm hover:bg-surface-container transition-all">
+Reset
+</button>
 </div>
 <!-- Help Widget -->
 <div class="bg-primary-container rounded-xl p-6 text-on-primary-container relative overflow-hidden">
@@ -193,11 +217,22 @@
 </div>
 </aside>
 <!-- Results Grid -->
-<section class="lg:col-span-9 space-y-8">
-<!-- Card 1: Premium Recommendation -->
-<div class="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl border-t-4 border-secondary-fixed">
+<section class="lg:col-span-9 space-y-8" id="results-container">
+
+<!-- No Results Message -->
+<div id="no-results" class="bg-surface-container-low rounded-xl p-12 text-center">
+<span class="material-symbols-outlined text-5xl text-outline mb-4 block">search_off</span>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-2">No results found</h3>
+<p class="text-on-surface-variant">Try adjusting your filters to see more options.</p>
+</div>
+
+<!-- Card 1: Bumrungrad - Thailand, $4,500, JCI -->
+<div class="hospital-card group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl border-t-4 border-secondary-fixed"
+     data-price="4500"
+     data-country="thailand"
+     data-accreditation="jci">
 <div class="md:w-1/3 relative h-64 md:h-auto">
-<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="ultra-modern luxury hospital lobby with marble floors, floor-to-ceiling windows, and lush indoor plants in Bangkok" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKp0DTA9IideehJKEewYNqibexMn1No_RZmRrqCzEdkX05997HLtxfO7gtzMZU0zvNujxbtUJL7FpLuMdkZcmIEJ8jB8k205AS_OqdCIOLgNS_bSEUncGUuURU3unMPqXEulBJM3vvmq9qej3c57WjmO-joR9l6buhUC9kew-BcemVy7GJkuf-gyR8oWAack2Kv8zyjT8P1oI0tu3A2eAJikdFwN862YD7W10sqVlmoyXKbrPWVoZZUvSBf0fozALMoOyQUnw8bZU"/>
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKp0DTA9IideehJKEewYNqibexMn1No_RZmRrqCzEdkX05997HLtxfO7gtzMZU0zvNujxbtUJL7FpLuMdkZcmIEJ8jB8k205AS_OqdCIOLgNS_bSEUncGUuURU3unMPqXEulBJM3vvmq9qej3c57WjmO-joR9l6buhUC9kew-BcemVy7GJkuf-gyR8oWAack2Kv8zyjT8P1oI0tu3A2eAJikdFwN862YD7W10sqVlmoyXKbrPWVoZZUvSBf0fozALMoOyQUnw8bZU" alt="Bumrungrad International Hospital"/>
 <div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-widest shadow-lg">Recommended Choice</div>
 </div>
 <div class="md:w-2/3 p-8 flex flex-col justify-between">
@@ -207,8 +242,8 @@
 <h2 class="font-headline font-extrabold text-2xl text-on-surface">Bumrungrad International Hospital</h2>
 <div class="flex items-center gap-2 text-on-surface-variant text-sm mt-1">
 <span class="material-symbols-outlined text-primary text-base">location_on</span>
-                    Bangkok, Thailand
-                  </div>
+Bangkok, Thailand
+</div>
 </div>
 <div class="text-right">
 <div class="text-3xl font-headline font-black text-primary">$4,500</div>
@@ -229,27 +264,31 @@
 <div class="flex flex-wrap gap-2 mb-8">
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">workspace_premium</span> US-Trained Doctors
-                </span>
+</span>
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">bed</span> Private Recovery Suite
-                </span>
+</span>
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">verified</span> JCI Accredited
-                </span>
+</span>
 </div>
 </div>
 <div class="flex items-center justify-between border-t border-outline-variant/10 pt-6">
-<a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="#">
-                View Treatment Plan <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="provider.html">
+View Treatment Plan <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 <button class="bg-primary text-on-primary px-8 py-3 rounded-md font-bold text-sm transition-all hover:bg-primary-container">Select Package</button>
 </div>
 </div>
 </div>
-<!-- Card 2: Value Option -->
-<div class="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl">
+
+<!-- Card 2: Istanbul - Turkey, $3,200, JCI -->
+<div class="hospital-card group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl"
+     data-price="3200"
+     data-country="turkey"
+     data-accreditation="jci">
 <div class="md:w-1/3 relative h-64 md:h-auto">
-<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="clean minimal high-tech dental operatory with teal accents and ergonomic equipment in Istanbul Turkey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeNtSm2-87uAYfJ1UZQ5J5TLHrlAzyyVWkpVYQtsKDwmdlMcnGLVNzX_OGQgKQYi9An6-j_VWq7y3p0-WqufCZdVQUA5YcnYRsc-gvqPb3r7quPcLUidWCkv79MNFtCmOn2q4NT79BQZYtvxmdyxH0hF1euL6ECXekmKaafsHUzuufUBB7QKg98Yil27Gb5OJmaSgC8MImxh7dBy8WmuBP4t2w9lFsHt0blk0Iwj0KhYu87eCE-nXutzGWSyIP4gwyz5KnlJCbUn4"/>
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeNtSm2-87uAYfJ1UZQ5J5TLHrlAzyyVWkpVYQtsKDwmdlMcnGLVNzX_OGQgKQYi9An6-j_VWq7y3p0-WqufCZdVQUA5YcnYRsc-gvqPb3r7quPcLUidWCkv79MNFtCmOn2q4NT79BQZYtvxmdyxH0hF1euL6ECXekmKaafsHUzuufUBB7QKg98Yil27Gb5OJmaSgC8MImxh7dBy8WmuBP4t2w9lFsHt0blk0Iwj0KhYu87eCE-nXutzGWSyIP4gwyz5KnlJCbUn4" alt="Istanbul Aesthetic Center"/>
 </div>
 <div class="md:w-2/3 p-8 flex flex-col justify-between">
 <div>
@@ -258,8 +297,8 @@
 <h2 class="font-headline font-extrabold text-2xl text-on-surface">Istanbul Aesthetic Center</h2>
 <div class="flex items-center gap-2 text-on-surface-variant text-sm mt-1">
 <span class="material-symbols-outlined text-primary text-base">location_on</span>
-                    Istanbul, Turkey
-                  </div>
+Istanbul, Turkey
+</div>
 </div>
 <div class="text-right">
 <div class="text-3xl font-headline font-black text-primary">$3,200</div>
@@ -280,37 +319,41 @@
 <div class="flex flex-wrap gap-2 mb-8">
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">airport_shuttle</span> VIP Airport Transfer
-                </span>
+</span>
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">hotel</span> 4-Star Hotel Stay
-                </span>
+</span>
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">translate</span> Multilingual Staff
-                </span>
+</span>
 </div>
 </div>
 <div class="flex items-center justify-between border-t border-outline-variant/10 pt-6">
 <a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="#">
-                Explore Destination <span class="material-symbols-outlined text-sm">arrow_forward</span>
+Explore Destination <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 <button class="bg-secondary-container text-on-secondary-container px-8 py-3 rounded-md font-bold text-sm transition-all hover:brightness-95">Select Package</button>
 </div>
 </div>
 </div>
-<!-- Card 3: Near-Home Choice -->
-<div class="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl">
+
+<!-- Card 3: CIMA - Costa Rica, $5,100, ISO -->
+<div class="hospital-card group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl"
+     data-price="5100"
+     data-country="costarica"
+     data-accreditation="iso">
 <div class="md:w-1/3 relative h-64 md:h-auto">
-<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="modern glass hospital facade reflecting bright blue sky in San Jose Costa Rica" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3w_SYK4Zr9Cpz636_iea2dCD0spFZ5o3Yqy8jH7rE42s4HwSQceNBDaFzjihGnXuFMFy64_Z1SdtnuoDODg16XrRTSaSKsBXe75qGmjzihyDz_WFfd1-i85BX4b-KHTBzgA6fSTmWJiTgsu0__LUYbFk0OtMRHDwUwRDkNycl013udjhbcNBXczR9lCIOodgOsEg1t5si19fesQZSdzYpkrHrjju_YpNsw2vHeR-lTlgp7_GHo3-VNmyKuhC_tSBoBptTX_tEnHU"/>
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3w_SYK4Zr9Cpz636_iea2dCD0spFZ5o3Yqy8jH7rE42s4HwSQceNBDaFzjihGnXuFMFy64_Z1SdtnuoDODg16XrRTSaSKsBXe75qGmjzihyDz_WFfd1-i85BX4b-KHTBzgA6fSTmWJiTgsu0__LUYbFk0OtMRHDwUwRDkNycl013udjhbcNBXczR9lCIOodgOsEg1t5si19fesQZSdzYpkrHrjju_YpNsw2vHeR-lTlgp7_GHo3-VNmyKuhC_tSBoBptTX_tEnHU" alt="CIMA Hospital San José"/>
 </div>
 <div class="md:w-2/3 p-8 flex flex-col justify-between">
 <div>
 <div class="flex justify-between items-start mb-4">
 <div>
-<h2 class="font-headline font-extrabold text-2xl text-on-surface">CIMA Hospital San Josﾃｩ</h2>
+<h2 class="font-headline font-extrabold text-2xl text-on-surface">CIMA Hospital San José</h2>
 <div class="flex items-center gap-2 text-on-surface-variant text-sm mt-1">
 <span class="material-symbols-outlined text-primary text-base">location_on</span>
-                    San Josﾃｩ, Costa Rica
-                  </div>
+San José, Costa Rica
+</div>
 </div>
 <div class="text-right">
 <div class="text-3xl font-headline font-black text-primary">$5,100</div>
@@ -331,32 +374,33 @@
 <div class="flex flex-wrap gap-2 mb-8">
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">flight_land</span> Minimal Travel Time
-                </span>
+</span>
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">groups</span> High Success Rate
-                </span>
+</span>
 <span class="bg-surface-container-low px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-2">
 <span class="material-symbols-outlined text-secondary text-sm">health_and_safety</span> Aftercare Program
-                </span>
+</span>
 </div>
 </div>
 <div class="flex items-center justify-between border-t border-outline-variant/10 pt-6">
 <a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="#">
-                Doctor Credentials <span class="material-symbols-outlined text-sm">arrow_forward</span>
+Doctor Credentials <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 <button class="bg-secondary-container text-on-secondary-container px-8 py-3 rounded-md font-bold text-sm transition-all hover:brightness-95">Select Package</button>
 </div>
 </div>
 </div>
+
 </section>
 </div>
 </main>
-<!-- Footer from Shared Components -->
+<!-- Footer -->
 <footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
 <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-7xl mx-auto">
 <div class="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-0">
 <div class="text-lg font-bold text-slate-900 dark:text-white">MedBridge Travel</div>
-<p class="font-inter text-[0.65rem] uppercase tracking-widest text-slate-500 dark:text-slate-400">ﾂｩ 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</p>
+<p class="font-inter text-[0.65rem] uppercase tracking-widest text-slate-500 dark:text-slate-400">© 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</p>
 </div>
 <div class="flex flex-wrap justify-center gap-6">
 <a class="font-inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors" href="#">Privacy Policy</a>
@@ -367,4 +411,77 @@
 </div>
 </div>
 </footer>
+
+<script>
+  function applyFilters() {
+    const priceUnder3k = document.getElementById('price-under3k').checked;
+    const price3k6k = document.getElementById('price-3k-6k').checked;
+    const priceOver6k = document.getElementById('price-over6k').checked;
+
+    const destThailand = document.getElementById('dest-thailand').checked;
+    const destTurkey = document.getElementById('dest-turkey').checked;
+    const destMexico = document.getElementById('dest-mexico').checked;
+    const destCostaRica = document.getElementById('dest-costarica').checked;
+
+    const accJCI = document.getElementById('acc-jci').checked;
+    const accISO = document.getElementById('acc-iso').checked;
+
+    const cards = document.querySelectorAll('.hospital-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const price = parseInt(card.dataset.price);
+      const country = card.dataset.country;
+      const accreditation = card.dataset.accreditation;
+
+      // Price filter
+      let priceMatch = false;
+      if (priceUnder3k && price < 3000) priceMatch = true;
+      if (price3k6k && price >= 3000 && price <= 6000) priceMatch = true;
+      if (priceOver6k && price > 6000) priceMatch = true;
+      // If no price filter selected, show all
+      if (!priceUnder3k && !price3k6k && !priceOver6k) priceMatch = true;
+
+      // Destination filter
+      let destMatch = false;
+      if (destThailand && country === 'thailand') destMatch = true;
+      if (destTurkey && country === 'turkey') destMatch = true;
+      if (destMexico && country === 'mexico') destMatch = true;
+      if (destCostaRica && country === 'costarica') destMatch = true;
+      // If no destination filter selected, show all
+      if (!destThailand && !destTurkey && !destMexico && !destCostaRica) destMatch = true;
+
+      // Accreditation filter
+      let accMatch = false;
+      if (accJCI && accreditation === 'jci') accMatch = true;
+      if (accISO && accreditation === 'iso') accMatch = true;
+      // If no accreditation filter selected, show all
+      if (!accJCI && !accISO) accMatch = true;
+
+      if (priceMatch && destMatch && accMatch) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Show/hide no results message
+    const noResults = document.getElementById('no-results');
+    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  function resetFilters() {
+    document.getElementById('price-under3k').checked = false;
+    document.getElementById('price-3k-6k').checked = true;
+    document.getElementById('price-over6k').checked = false;
+    document.getElementById('dest-thailand').checked = true;
+    document.getElementById('dest-turkey').checked = false;
+    document.getElementById('dest-mexico').checked = false;
+    document.getElementById('dest-costarica').checked = false;
+    document.getElementById('acc-jci').checked = true;
+    document.getElementById('acc-iso').checked = false;
+    applyFilters();
+  }
+</script>
 </body></html>
