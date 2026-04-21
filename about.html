@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | MedBridge Travel</title>
+  <meta name="description" content="MedBridge Travel connects patients with world-class international care through a streamlined concierge-style platform — making global healthcare accessible, affordable, and safe." />
+  <meta property="og:title" content="About MedBridge Travel" />
+  <meta property="og:description" content="Bridging the gap between patients and affordable world-class healthcare worldwide." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ShunsukeMaeda-m.github.io/medbridge-travel/about.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:      #00478d;
+      --navy-dark: #003570;
+      --teal:      #006a6a;
+      --teal-light:#e8f5f5;
+      --bg:        #f7fafc;
+      --surface:   #ffffff;
+      --border:    #e0e6ef;
+      --text:      #181c1e;
+      --muted:     #424752;
+      --radius:    14px;
+      --shadow:    0 2px 12px rgba(0,71,141,.07);
+      --shadow-md: 0 6px 28px rgba(0,71,141,.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem,5vw,4rem); height: 68px;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 6px rgba(0,71,141,.06);
+    }
+    .nav-brand { font-family: 'Manrope', sans-serif; font-size: 1.25rem; font-weight: 800; color: #1e3a8a; text-decoration: none; letter-spacing: -.02em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .875rem; font-weight: 600; text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.active { color: var(--navy); border-bottom: 2px solid var(--teal); padding-bottom: 2px; }
+    .nav-cta { background: var(--navy); color: #fff; border: none; border-radius: 8px; padding: .55rem 1.4rem; font-size: .85rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: background .2s, transform .15s; }
+    .nav-cta:hover { background: var(--navy-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero { padding-top: 68px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem clamp(1.5rem,5vw,3rem) 4.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: var(--teal-light); border-radius: 50px;
+      padding: .35rem 1rem; font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .1em; color: var(--teal);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(2rem,4.5vw,3rem); font-weight: 800; line-height: 1.12;
+      color: var(--navy); margin-bottom: 1.25rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--navy); color: #fff; border: none; border-radius: 8px; padding: .8rem 1.75rem; font-weight: 700; font-size: .93rem; text-decoration: none; transition: background .2s, transform .15s; display: inline-block; }
+    .btn-primary:hover { background: var(--navy-dark); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--border); border-radius: 8px; padding: .78rem 1.6rem; font-weight: 700; font-size: .93rem; text-decoration: none; transition: border-color .2s, background .2s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--navy); background: #f0f4fb; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .stat-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; text-align: center; box-shadow: var(--shadow); }
+    .stat-number { font-family: 'Manrope', sans-serif; font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .stat-label { font-size: .78rem; color: var(--muted); margin-top: .35rem; font-weight: 500; }
+
+    /* ── PROBLEM ── */
+    .problem-section { background: var(--navy); padding: 5rem clamp(1.5rem,5vw,3rem); }
+    .problem-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .problem-text .eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.5); margin-bottom: 1rem; }
+    .problem-text h2 { font-family: 'Manrope', sans-serif; font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 800; color: #fff; margin-bottom: 1.25rem; line-height: 1.2; }
+    .problem-text h2 span { color: #8cf3f3; }
+    .problem-text p { color: rgba(255,255,255,.7); font-size: .97rem; line-height: 1.75; margin-bottom: 1rem; }
+    .problem-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .problem-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+    .problem-card .material-symbols-outlined { color: #8cf3f3; font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+    .problem-card h4 { font-family: 'Manrope', sans-serif; font-size: .93rem; font-weight: 700; color: #fff; margin-bottom: .25rem; }
+    .problem-card p { font-size: .84rem; color: rgba(255,255,255,.6); line-height: 1.55; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { max-width: 1100px; margin: 0 auto; padding: 5rem clamp(1.5rem,5vw,3rem); }
+    .section-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--teal); margin-bottom: .6rem; }
+    .section-title { font-family: 'Manrope', sans-serif; font-size: clamp(1.7rem,3vw,2.2rem); font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+    .section-sub { color: var(--muted); font-size: .95rem; line-height: 1.7; margin-bottom: 3rem; max-width: 640px; }
+    .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+    .steps-grid::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 2px; background: var(--border); z-index: 0; }
+    .step { text-align: center; position: relative; z-index: 1; padding: 0 .5rem; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--navy); box-shadow: var(--shadow); transition: background .2s, border-color .2s; }
+    .step:hover .step-num { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .step h4 { font-family: 'Manrope', sans-serif; font-size: .85rem; font-weight: 800; color: var(--navy); margin-bottom: .4rem; }
+    .step p { font-size: .78rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── STRENGTHS ── */
+    .strengths-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .strengths-inner { max-width: 1100px; margin: 0 auto; padding: 5rem clamp(1.5rem,5vw,3rem); }
+    .strengths-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .strength-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; display: flex; gap: 1.25rem; align-items: flex-start; box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s, border-color .2s; }
+    .strength-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--navy); }
+    .strength-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--teal-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .strength-icon .material-symbols-outlined { color: var(--teal); font-size: 1.4rem; }
+    .strength-card h3 { font-family: 'Manrope', sans-serif; font-size: .97rem; font-weight: 800; color: var(--navy); margin-bottom: .45rem; }
+    .strength-card p { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── PRICING TRANSPARENCY ── */
+    .pricing-section { max-width: 1100px; margin: 0 auto; padding: 5rem clamp(1.5rem,5vw,3rem); }
+    .pricing-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+    .pricing-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 2rem; text-align: center; box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s, border-color .2s; }
+    .pricing-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .pricing-card.featured { border-color: var(--navy); }
+    .pricing-card .country-flag { font-size: 2.5rem; margin-bottom: .75rem; }
+    .pricing-card h3 { font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: .3rem; }
+    .pricing-card .example { font-size: .78rem; color: var(--muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: .07em; }
+    .pricing-card .price { font-family: 'Manrope', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--navy); margin-bottom: .3rem; }
+    .pricing-card .vs-us { font-size: .8rem; color: var(--teal); font-weight: 600; margin-bottom: 1.25rem; }
+    .pricing-card .features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: .5rem; }
+    .pricing-card .features li { font-size: .83rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
+    .pricing-card .features .material-symbols-outlined { font-size: 1rem; color: var(--teal); }
+    .us-comparison { margin-top: 1.5rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: var(--radius); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .us-comparison .material-symbols-outlined { color: #dc2626; font-size: 1.5rem; flex-shrink: 0; }
+    .us-comparison p { font-size: .88rem; color: #7f1d1d; line-height: 1.5; }
+    .us-comparison strong { color: #dc2626; }
+
+    /* ── TRUST ── */
+    .trust-section { background: var(--surface); border-top: 1px solid var(--border); }
+    .trust-inner { max-width: 1100px; margin: 0 auto; padding: 3.5rem clamp(1.5rem,5vw,3rem); text-align: center; }
+    .trust-inner h3 { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 2rem; }
+    .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .badge { display: flex; align-items: center; gap: .6rem; background: var(--bg); border: 1px solid var(--border); border-radius: 50px; padding: .6rem 1.3rem; font-size: .82rem; font-weight: 600; color: var(--muted); }
+    .badge .material-symbols-outlined { font-size: 1.1rem; color: var(--teal); }
+
+    /* ── CTA ── */
+    .cta-section { background: linear-gradient(135deg, var(--navy) 0%, #005db6 100%); padding: 5rem clamp(1.5rem,5vw,3rem); text-align: center; }
+    .cta-section h2 { font-family: 'Manrope', sans-serif; font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 800; color: #fff; margin-bottom: .75rem; }
+    .cta-section p { color: rgba(255,255,255,.7); font-size: 1rem; margin-bottom: 2.5rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-btn-white { background: #fff; color: var(--navy); border: none; border-radius: 10px; padding: .9rem 2rem; font-weight: 700; font-size: .95rem; text-decoration: none; transition: transform .15s, box-shadow .2s; display: inline-block; }
+    .cta-btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    .cta-btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.4); border-radius: 10px; padding: .88rem 2rem; font-weight: 700; font-size: .95rem; text-decoration: none; transition: border-color .2s, background .2s; display: inline-block; }
+    .cta-btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+    /* ── FOOTER ── */
+    footer { background: #0f1e3d; padding: 2rem clamp(1.5rem,5vw,4rem); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 800; color: #fff; }
+    .footer-copy { color: rgba(255,255,255,.35); font-size: .78rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,.45); font-size: .78rem; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #8cf3f3; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-inner, .problem-inner, .story-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .steps-grid::before { display: none; }
+      .strengths-grid, .pricing-cards { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+
+    /* ── FADE IN ── */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-brand">MedBridge Travel</a>
+    <ul class="nav-links">
+      <li><a href="intake.html">Find Treatment</a></li>
+      <li><a href="provider.html">Specialists</a></li>
+      <li><a href="recommendations.html">Destinations</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="intake.html" class="nav-cta">Get Started</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="fade-in">
+        <div class="hero-badge">
+          <span class="material-symbols-outlined" style="font-size:.9rem">favorite</span>
+          Who We Are
+        </div>
+        <h1>Connecting Patients with<br><em>World-Class Care</em></h1>
+        <p>Rising medical costs and long wait times are leaving millions of Americans without access to the care they need. MedBridge Travel bridges that gap — connecting patients with internationally accredited providers through a streamlined, concierge-style platform.</p>
+        <div class="hero-actions">
+          <a href="intake.html" class="btn-primary">Find Your Treatment</a>
+          <a href="contact.html" class="btn-outline">Talk to Our Team</a>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">2,500+</div>
+            <div class="stat-label">Patients Served</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">40+</div>
+            <div class="stat-label">Partner Hospitals</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Countries</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">Average Savings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">Patient Rating</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Concierge Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM WE SOLVE -->
+  <section class="problem-section fade-in">
+    <div class="problem-inner">
+      <div class="problem-text">
+        <div class="eyebrow">The Problem We Solve</div>
+        <h2>American Healthcare Is <span>Broken for Millions</span></h2>
+        <p>Rising costs, long wait times, and limited insurance coverage force millions of Americans to delay or forgo essential medical procedures every year.</p>
+        <p>At the same time, world-class healthcare is available abroad at a fraction of the cost — but patients lack the knowledge, trust, and logistical support to pursue it safely.</p>
+        <p>That's the gap MedBridge Travel was built to fill.</p>
+      </div>
+      <div class="problem-cards">
+        <div class="problem-card">
+          <span class="material-symbols-outlined">trending_up</span>
+          <div>
+            <h4>Skyrocketing Medical Costs</h4>
+            <p>U.S. healthcare expenses continue to rise year after year, making even necessary procedures financially overwhelming — especially for the uninsured or underinsured.</p>
+          </div>
+        </div>
+        <div class="problem-card">
+          <span class="material-symbols-outlined">schedule</span>
+          <div>
+            <h4>Extended Wait Times</h4>
+            <p>Long queues for specialists and surgical slots delay critical care, worsening outcomes for patients who need timely intervention.</p>
+          </div>
+        </div>
+        <div class="problem-card">
+          <span class="material-symbols-outlined">help</span>
+          <div>
+            <h4>No Trusted Guide Abroad</h4>
+            <p>Navigating international healthcare is intimidating. Patients face unknown providers, unclear pricing, and complex logistics — with no one to turn to.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section fade-in">
+    <div class="section-label">Our Process</div>
+    <h2 class="section-title">How MedBridge Travel Works</h2>
+    <p class="section-sub">From downloading the app to recovering at home — we handle every detail so you can focus entirely on your health.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Enter Your Procedure</h4>
+        <p>Download the app and input details about the treatment you need.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Get Personalized Matches</h4>
+        <p>Our platform generates curated recommendations based on your needs, budget, and past patient experiences.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Expert Guidance</h4>
+        <p>Our research team evaluates medical quality, accommodations, and total cost to help you choose confidently.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Flexible Payment</h4>
+        <p>Choose from multiple payment options including installment plans to make treatment financially accessible.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h4>Travel &amp; Heal</h4>
+        <p>Our on-call concierge team supports you throughout your entire journey — from departure to full recovery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRENGTHS -->
+  <section class="strengths-section fade-in">
+    <div class="strengths-inner">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Our Core Strengths</h2>
+      <p class="section-sub">A patient-centered approach built on quality, transparency, and end-to-end support.</p>
+      <div class="strengths-grid">
+        <div class="strength-card">
+          <div class="strength-icon"><span class="material-symbols-outlined">verified</span></div>
+          <div>
+            <h3>Affordable Access to Advanced Care</h3>
+            <p>We partner exclusively with internationally accredited providers that deliver high-quality treatments at significantly lower costs than U.S. institutions — without compromising on safety or outcomes.</p>
+          </div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><span class="material-symbols-outlined">person_search</span></div>
+          <div>
+            <h3>Personalized Medical Matching</h3>
+            <p>Our dedicated research team analyzes each patient's specific needs and connects them with the most suitable doctors and facilities worldwide — tailored, not generic.</p>
+          </div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><span class="material-symbols-outlined">support_agent</span></div>
+          <div>
+            <h3>Concierge-Level Support</h3>
+            <p>From travel logistics and accommodations to communication with providers and on-site assistance — our end-to-end service eliminates uncertainty and increases patient confidence.</p>
+          </div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><span class="material-symbols-outlined">payments</span></div>
+          <div>
+            <h3>Transparent Pricing &amp; Flexible Payment</h3>
+            <p>We present three clear pricing options across different countries so patients can make informed decisions. Installment plans ensure financial barriers don't stand between you and your health.</p>
+          </div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><span class="material-symbols-outlined">timer</span></div>
+          <div>
+            <h3>Shorter Wait Times</h3>
+            <p>International partners can often accommodate patients much faster than domestic providers — addressing both urgent and elective needs without months of waiting.</p>
+          </div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><span class="material-symbols-outlined">shield</span></div>
+          <div>
+            <h3>Rigorous Provider Vetting</h3>
+            <p>Every partner hospital is thoroughly screened for credentials, quality standards, and proven patient outcomes. We only work with providers we'd trust with our own families.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING TRANSPARENCY -->
+  <section class="pricing-section fade-in">
+    <div class="section-label">Transparent Pricing</div>
+    <h2 class="section-title">Compare Your Options</h2>
+    <p class="section-sub">We present three clear pricing options across top destinations so you can choose based on your budget and preferences — no surprises, no hidden fees.</p>
+
+    <div class="us-comparison">
+      <span class="material-symbols-outlined">warning</span>
+      <p>A hip replacement in the U.S. averages <strong>$40,000–$65,000</strong>. The same procedure abroad costs a fraction — with equal or better clinical outcomes at JCI-accredited facilities.</p>
+    </div>
+
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <div class="country-flag">🇹🇭</div>
+        <h3>Thailand</h3>
+        <div class="example">Hip Replacement — Example</div>
+        <div class="price">~$15,000</div>
+        <div class="vs-us">Save up to 70% vs. U.S. costs</div>
+        <ul class="features">
+          <li><span class="material-symbols-outlined">check_circle</span>JCI-accredited hospitals</li>
+          <li><span class="material-symbols-outlined">check_circle</span>US-trained surgeons</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Private recovery suites</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Airport concierge</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <div class="country-flag">🇹🇷</div>
+        <h3>Turkey</h3>
+        <div class="example">Hip Replacement — Example</div>
+        <div class="price">~$12,000</div>
+        <div class="vs-us">Save up to 75% vs. U.S. costs</div>
+        <ul class="features">
+          <li><span class="material-symbols-outlined">check_circle</span>JCI-accredited hospitals</li>
+          <li><span class="material-symbols-outlined">check_circle</span>European-trained specialists</li>
+          <li><span class="material-symbols-outlined">check_circle</span>4-star hotel recovery</li>
+          <li><span class="material-symbols-outlined">check_circle</span>VIP transfers included</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <div class="country-flag">🇲🇽</div>
+        <h3>Mexico</h3>
+        <div class="example">Hip Replacement — Example</div>
+        <div class="price">~$13,500</div>
+        <div class="vs-us">Save up to 72% vs. U.S. costs</div>
+        <ul class="features">
+          <li><span class="material-symbols-outlined">check_circle</span>JCI-accredited hospitals</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Minimal travel time from U.S.</li>
+          <li><span class="material-symbols-outlined">check_circle</span>English-speaking staff</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Aftercare program</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BADGES -->
+  <section class="trust-section fade-in">
+    <div class="trust-inner">
+      <h3>Accreditations &amp; Compliance</h3>
+      <div class="badge-row">
+        <div class="badge"><span class="material-symbols-outlined">verified</span> JCI Network Partner</div>
+        <div class="badge"><span class="material-symbols-outlined">lock</span> HIPAA Compliant</div>
+        <div class="badge"><span class="material-symbols-outlined">public</span> GDPR Compliant</div>
+        <div class="badge"><span class="material-symbols-outlined">workspace_premium</span> ISO 9001</div>
+        <div class="badge"><span class="material-symbols-outlined">health_and_safety</span> MTQUA Certified</div>
+        <div class="badge"><span class="material-symbols-outlined">security</span> SSL Encrypted</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section fade-in">
+    <h2>Ready to Start Your Journey?</h2>
+    <p>Join thousands of patients who have already accessed world-class care at a fraction of U.S. costs — safely, confidently, and with full support every step of the way.</p>
+    <div class="cta-buttons">
+      <a href="intake.html" class="cta-btn-white">Find My Treatment</a>
+      <a href="contact.html" class="cta-btn-ghost">Talk to a Coordinator</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">MedBridge Travel</span>
+    <span class="footer-copy">© 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</span>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">JCI Accreditation</a>
+      <a href="contact.html">Contact Support</a>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
