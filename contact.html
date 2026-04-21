@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | MedBridge Travel</title>
+  <meta name="description" content="Get in touch with MedBridge Travel. Our medical coordinators are available 24/7 to help you start your global healthcare journey." />
+  <meta property="og:title" content="Contact MedBridge Travel" />
+  <meta property="og:description" content="Our medical coordinators are available 24/7 to assist you." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ShunsukeMaeda-m.github.io/medbridge-travel/contact.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:       #1a2e5a;
+      --navy-dark:  #0f1e3d;
+      --teal:       #2ec4b6;
+      --teal-dark:  #25a99d;
+      --teal-light: #e8f8f7;
+      --bg:         #f4f7fc;
+      --surface:    #ffffff;
+      --border:     #dce5f0;
+      --text:       #1a2e5a;
+      --muted:      #6b7f9e;
+      --radius:     12px;
+      --shadow:     0 2px 12px rgba(26,46,90,.08);
+      --shadow-md:  0 4px 24px rgba(26,46,90,.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem,5vw,4rem); height: 68px;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(26,46,90,.06);
+    }
+    .nav-brand { font-size: 1.2rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .nav-brand span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .875rem; font-weight: 500; text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy); color: #fff; border: none; border-radius: 8px;
+      padding: .55rem 1.4rem; font-size: .85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--navy-dark); transform: translateY(-1px); }
+
+    /* PAGE HEADER */
+    .page-header { padding-top: 68px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 1100px; margin: 0 auto; padding: 3.5rem clamp(1.5rem,5vw,3rem) 3rem; }
+    .breadcrumb {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .78rem; color: var(--muted); margin-bottom: 1.25rem;
+      text-transform: uppercase; letter-spacing: .08em;
+    }
+    .breadcrumb a { color: var(--teal); text-decoration: none; }
+    .breadcrumb .material-icons-round { font-size: .9rem; }
+    .page-header h1 { font-size: clamp(1.9rem,4vw,2.8rem); font-weight: 700; line-height: 1.15; color: var(--navy); margin-bottom: .75rem; }
+    .page-header p { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+
+    /* MAIN */
+    main {
+      max-width: 1100px; margin: 0 auto;
+      padding: 3rem clamp(1.5rem,5vw,3rem) 5rem;
+      display: grid; grid-template-columns: 1fr 440px; gap: 3rem; align-items: start;
+    }
+
+    /* INFO */
+    .info-section h2 { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: .5rem; }
+    .info-section > p { color: var(--muted); font-size: .93rem; line-height: 1.7; margin-bottom: 2rem; }
+    .info-cards { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 2rem; }
+    .info-card {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.1rem 1.3rem; box-shadow: var(--shadow);
+      transition: box-shadow .2s, border-color .2s, transform .2s;
+    }
+    .info-card:hover { border-color: var(--teal); box-shadow: var(--shadow-md); transform: translateX(3px); }
+    .info-card-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--teal-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .info-card-icon .material-icons-round { color: var(--teal); font-size: 1.2rem; }
+    .info-card-body h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .25rem; }
+    .info-card-body p { font-size: .93rem; color: var(--navy); font-weight: 500; }
+    .info-card-body a { color: var(--teal); text-decoration: none; }
+    .info-card-body a:hover { text-decoration: underline; }
+    .online-badge {
+      display: flex; align-items: center; gap: .85rem;
+      background: #f0fdf9; border: 1px solid #b6ede8; border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+    }
+    .pulse-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #16a34a;
+      box-shadow: 0 0 0 4px rgba(22,163,74,.2); flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 4px rgba(22,163,74,.2); }
+      50%      { box-shadow: 0 0 0 8px rgba(22,163,74,.05); }
+    }
+    .online-badge strong { display: block; color: #15803d; font-size: .88rem; font-weight: 600; }
+    .online-badge span { color: var(--muted); font-size: .8rem; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    .trust-row { display: flex; gap: .65rem; flex-wrap: wrap; }
+    .trust-chip {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 50px;
+      padding: .4rem .9rem; font-size: .78rem; color: var(--muted); font-weight: 500;
+    }
+    .trust-chip .material-icons-round { font-size: .95rem; color: var(--teal); }
+
+    /* FORM CARD */
+    .form-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2.25rem; box-shadow: var(--shadow-md); position: sticky; top: 84px;
+    }
+    .form-card-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; }
+    .form-card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--teal-light); display: flex; align-items: center; justify-content: center; }
+    .form-card-icon .material-icons-round { color: var(--teal); font-size: 1.4rem; }
+    .form-card-header h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+    .form-card-header p { font-size: .8rem; color: var(--muted); margin-top: .1rem; }
+    .card-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 1.5rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+    label { display: block; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: .4rem; }
+    input, select, textarea {
+      width: 100%; background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px;
+      color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: .9rem;
+      padding: .7rem .9rem; outline: none; appearance: none;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    input::placeholder, textarea::placeholder { color: #b0bdd0; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--teal); background: #fff;
+      box-shadow: 0 0 0 3px rgba(46,196,182,.15);
+    }
+    textarea { resize: vertical; min-height: 100px; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236b7f9e' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .9rem center;
+      padding-right: 2.5rem; cursor: pointer;
+    }
+    .submit-btn {
+      width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 8px;
+      padding: .875rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .93rem; font-weight: 600;
+      cursor: pointer; margin-top: .25rem;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .submit-btn:hover { background: var(--navy-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,46,90,.2); }
+    .submit-btn .material-icons-round { font-size: 1.05rem; }
+    .form-note { display: flex; align-items: flex-start; gap: .4rem; font-size: .76rem; color: var(--muted); margin-top: .9rem; line-height: 1.5; }
+    .form-note .material-icons-round { font-size: .9rem; color: var(--teal); margin-top: .1rem; flex-shrink: 0; }
+    .success-message { display: none; flex-direction: column; align-items: center; text-align: center; padding: 2.5rem 1rem; gap: 1rem; }
+    .success-icon { width: 64px; height: 64px; border-radius: 50%; background: #f0fdf9; border: 2px solid #b6ede8; display: flex; align-items: center; justify-content: center; }
+    .success-icon .material-icons-round { color: #16a34a; font-size: 2rem; }
+    .success-message h4 { font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+    .success-message p { color: var(--muted); font-size: .88rem; line-height: 1.6; max-width: 280px; }
+    .reply-note { background: var(--teal-light); border-radius: 8px; padding: .75rem 1rem; font-size: .8rem; color: var(--teal-dark); font-weight: 500; }
+
+    /* FAQ */
+    .faq-section { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem,5vw,3rem) 5rem; }
+    .section-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--teal); margin-bottom: .6rem; }
+    .faq-section h2 { font-size: 1.7rem; font-weight: 700; color: var(--navy); margin-bottom: .5rem; }
+    .faq-section > p { color: var(--muted); font-size: .93rem; margin-bottom: 2rem; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: border-color .2s; }
+    .faq-item.open { border-color: var(--teal); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.3rem; color: var(--navy);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: .9rem; font-weight: 600;
+      text-align: left; gap: 1rem; transition: color .2s;
+    }
+    .faq-q:hover { color: var(--teal); }
+    .faq-toggle { width: 26px; height: 26px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .2s; }
+    .faq-toggle .material-icons-round { font-size: .95rem; color: var(--muted); transition: transform .3s, color .2s; }
+    .faq-item.open .faq-toggle { background: var(--teal-light); }
+    .faq-item.open .faq-toggle .material-icons-round { transform: rotate(45deg); color: var(--teal); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s ease; color: var(--muted); font-size: .875rem; line-height: 1.7; padding: 0 1.3rem; }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 1.3rem 1.1rem; }
+
+    /* FOOTER */
+    footer { background: var(--navy); padding: 2rem clamp(1.5rem,5vw,4rem); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-size: 1rem; font-weight: 700; color: #fff; }
+    .footer-copy { color: rgba(255,255,255,.45); font-size: .78rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,.5); font-size: .78rem; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--teal); }
+
+    /* RESPONSIVE */
+    @media (max-width: 880px) {
+      main { grid-template-columns: 1fr; gap: 2rem; }
+      .form-card { position: static; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* FADE IN */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">MedBridge <span>Travel</span></a>
+    <ul class="nav-links">
+      <li><a href="intake.html">Find Treatment</a></li>
+      <li><a href="provider.html">Specialists</a></li>
+      <li><a href="recommendations.html">Destinations</a></li>
+      <li><a href="index.html#how-it-works">How it Works</a></li>
+    </ul>
+    <a href="intake.html" class="nav-cta">Get Started</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="header-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="material-icons-round">chevron_right</span>
+        <span>Contact Us</span>
+      </div>
+      <h1>Get in Touch with<br>Our Care Team</h1>
+      <p>Whether you're exploring options or ready to book, our coordinators will guide you every step of the way — no pressure, no obligation.</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- LEFT -->
+    <div class="info-section fade-in">
+      <h2>How to Reach Us</h2>
+      <p>Our team operates across multiple time zones so you always have someone available to answer your questions.</p>
+
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-card-icon"><span class="material-icons-round">mail_outline</span></div>
+          <div class="info-card-body">
+            <h4>Email</h4>
+            <p><a href="mailto:care@medbridgetravel.com">care@medbridgetravel.com</a></p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><span class="material-icons-round">phone_in_talk</span></div>
+          <div class="info-card-body">
+            <h4>Phone / WhatsApp</h4>
+            <p><a href="tel:+18005550191">+1 (800) 555-0191</a></p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><span class="material-icons-round">schedule</span></div>
+          <div class="info-card-body">
+            <h4>Response Time</h4>
+            <p>Within 4 business hours</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><span class="material-icons-round">translate</span></div>
+          <div class="info-card-body">
+            <h4>Languages</h4>
+            <p>English, Spanish, Arabic, Japanese, French</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="online-badge">
+        <div class="pulse-dot"></div>
+        <div>
+          <strong>Coordinators Online Now</strong>
+          <span>Available 24 / 7 — including weekends &amp; holidays</span>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700;margin-bottom:.85rem;">Accreditation &amp; Compliance</p>
+      <div class="trust-row">
+        <div class="trust-chip"><span class="material-icons-round">verified</span> JCI Accredited</div>
+        <div class="trust-chip"><span class="material-icons-round">lock</span> HIPAA Compliant</div>
+        <div class="trust-chip"><span class="material-icons-round">public</span> GDPR Compliant</div>
+        <div class="trust-chip"><span class="material-icons-round">workspace_premium</span> ISO 9001</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="form-card fade-in">
+      <div class="form-card-header">
+        <div class="form-card-icon"><span class="material-icons-round">chat_bubble_outline</span></div>
+        <div>
+          <h3>Send Us a Message</h3>
+          <p>We'll follow up within one business day</p>
+        </div>
+      </div>
+      <hr class="card-divider" />
+
+      <!-- ★ Formspree化する時: action="https://formspree.io/f/YOUR_FORM_ID" method="POST" を追加して、submitのJSを削除するだけ -->
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone / WhatsApp <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 555 000 0000" />
+        </div>
+        <div class="form-group">
+          <label for="treatment">Treatment of Interest</label>
+          <select id="treatment" name="treatment">
+            <option value="" disabled selected>Select a category…</option>
+            <option>Cardiac Surgery</option>
+            <option>Orthopedics &amp; Joint Replacement</option>
+            <option>Oncology / Cancer Treatment</option>
+            <option>Cosmetic &amp; Plastic Surgery</option>
+            <option>Dental Restoration</option>
+            <option>Fertility &amp; IVF</option>
+            <option>Ophthalmology (LASIK / Cataract)</option>
+            <option>Stem Cell Therapy</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message *</label>
+          <textarea id="message" name="message" placeholder="Tell us about your situation, timeline, or any questions you have…" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+          <span class="material-icons-round">send</span>
+          Send Message
+        </button>
+        <div class="form-note">
+          <span class="material-icons-round">lock</span>
+          Your information is encrypted and never shared with third parties.
+        </div>
+      </form>
+
+      <div class="success-message" id="successMsg">
+        <div class="success-icon"><span class="material-icons-round">check</span></div>
+        <h4>Message Received!</h4>
+        <p>Thank you for reaching out. A coordinator will be in touch within one business day.</p>
+        <div class="reply-note">📩 Check your inbox — we'll confirm by email</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FAQ -->
+  <section class="faq-section fade-in">
+    <div class="section-label">Common Questions</div>
+    <h2>Frequently Asked Questions</h2>
+    <p>Can't find what you're looking for? Send us a message above.</p>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-q">How quickly will I receive a response?<div class="faq-toggle"><span class="material-icons-round">add</span></div></button>
+        <div class="faq-a">We aim to respond within 4 business hours. For urgent medical needs, our priority line is available around the clock.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my medical information kept private?<div class="faq-toggle"><span class="material-icons-round">add</span></div></button>
+        <div class="faq-a">All personal and medical data is encrypted and handled in strict compliance with HIPAA and GDPR. We never sell or share your information.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is the initial consultation free?<div class="faq-toggle"><span class="material-icons-round">add</span></div></button>
+        <div class="faq-a">Yes — an initial consultation with our medical coordinators is completely free with no obligation to proceed.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Which countries do you operate in?<div class="faq-toggle"><span class="material-icons-round">add</span></div></button>
+        <div class="faq-a">Our network includes JCI-accredited facilities in Thailand, Turkey, India, Mexico, South Korea, Germany, and more.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I get a cost estimate before committing?<div class="faq-toggle"><span class="material-icons-round">add</span></div></button>
+        <div class="faq-a">Yes. Once we understand your procedure and destination, we provide a transparent itemised estimate within 48 hours at no charge.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you assist with visa and travel arrangements?<div class="faq-toggle"><span class="material-icons-round">add</span></div></button>
+        <div class="faq-a">Our concierge team can advise on medical visa requirements and coordinate flights and accommodation for you and a companion.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-brand">MedBridge Travel</span>
+    <span class="footer-copy">© 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</span>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">JCI Accreditation</a>
+      <a href="contact.html">Contact Support</a>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // FAQ
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // Form submit (デモ版)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const required = ['firstName', 'lastName', 'email', 'message'];
+      let valid = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) { el.style.borderColor = '#ef4444'; valid = false; }
+        else { el.style.borderColor = ''; }
+      });
+      if (!valid) return;
+      this.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'flex';
+    });
+  </script>
+
+</body>
+</html>
