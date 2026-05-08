@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Hospital Match | MedBridge Travel</title>
+  <meta name="description" content="Describe your symptoms and medical needs. Our AI analyzes your profile and matches you with the best JCI-accredited hospitals worldwide." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:       #00478d;
+      --navy-dark:  #003570;
+      --teal:       #006a6a;
+      --teal-light: #e8f5f5;
+      --bg:         #f7fafc;
+      --surface:    #ffffff;
+      --border:     #e0e6ef;
+      --text:       #181c1e;
+      --muted:      #424752;
+      --radius:     14px;
+      --shadow:     0 2px 12px rgba(0,71,141,.07);
+      --shadow-md:  0 6px 28px rgba(0,71,141,.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem,5vw,4rem); height: 68px;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { font-family:'Manrope',sans-serif; font-size:1.25rem; font-weight:800; color:#1e3a8a; text-decoration:none; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--muted); font-size:.875rem; font-weight:600; text-decoration:none; transition:color .2s; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-links a.active { color:var(--navy); border-bottom:2px solid var(--teal); padding-bottom:2px; }
+    .nav-cta { background:var(--navy); color:#fff; border:none; border-radius:8px; padding:.55rem 1.4rem; font-size:.85rem; font-weight:700; cursor:pointer; text-decoration:none; transition:background .2s; }
+    .nav-cta:hover { background:var(--navy-dark); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding-top: 68px;
+      background: linear-gradient(135deg, var(--navy) 0%, #005db6 100%);
+      position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(140,243,243,.08) 0%, transparent 70%);
+    }
+    .header-inner {
+      max-width: 860px; margin: 0 auto;
+      padding: 4rem clamp(1.5rem,5vw,3rem) 3.5rem;
+      text-align: center; position: relative;
+    }
+    .ai-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(140,243,243,.15); border: 1px solid rgba(140,243,243,.3);
+      border-radius: 50px; padding: .4rem 1.1rem;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; color: #8cf3f3; margin-bottom: 1.5rem;
+    }
+    .ai-badge .material-symbols-outlined { font-size: 1rem; }
+    .page-header h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(2rem,4vw,3rem); font-weight: 800;
+      color: #fff; line-height: 1.15; margin-bottom: 1rem;
+    }
+    .page-header p { color: rgba(255,255,255,.75); font-size: 1.05rem; line-height: 1.7; }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 1000px; margin: 0 auto;
+      padding: 3rem clamp(1.5rem,5vw,3rem) 5rem;
+      display: grid; grid-template-columns: 320px 1fr; gap: 2rem; align-items: start;
+    }
+
+    /* FORM PANEL */
+    .form-panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 1.75rem; box-shadow: var(--shadow-md);
+      position: sticky; top: 84px;
+    }
+    .form-panel h2 {
+      font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 800;
+      color: var(--navy); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .form-panel h2 .material-symbols-outlined { color: var(--teal); font-size: 1.2rem; }
+
+    .step-group { margin-bottom: 1.25rem; }
+    .step-label {
+      font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted); margin-bottom: .5rem; display: block;
+    }
+    select, textarea {
+      width: 100%; background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 9px; color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: .88rem;
+      padding: .7rem .9rem; outline: none; appearance: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    select:focus, textarea:focus {
+      border-color: var(--navy); box-shadow: 0 0 0 3px rgba(0,71,141,.1); background: #fff;
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23424752' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .9rem center;
+      padding-right: 2.5rem; cursor: pointer;
+    }
+
+    .chip-group { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .chip {
+      padding: .38rem .85rem; border-radius: 50px;
+      border: 1.5px solid var(--border); background: var(--bg);
+      font-size: .78rem; font-weight: 600; color: var(--muted);
+      cursor: pointer; transition: all .18s; user-select: none;
+    }
+    .chip:hover { border-color: var(--navy); color: var(--navy); }
+    .chip.selected { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    .match-btn {
+      width: 100%; background: var(--navy); color: #fff;
+      border: none; border-radius: 10px; padding: .9rem;
+      font-family: 'Manrope', sans-serif; font-size: .95rem; font-weight: 800;
+      cursor: pointer; margin-top: 1.25rem;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .match-btn:hover:not(:disabled) {
+      background: var(--navy-dark); transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,71,141,.2);
+    }
+    .match-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .match-btn .material-symbols-outlined { font-size: 1.1rem; }
+    .reset-btn {
+      background: none; border: none; color: var(--muted); font-size: .8rem;
+      cursor: pointer; margin-top: .75rem; width: 100%; text-align: center;
+      padding: .4rem; transition: color .2s;
+    }
+    .reset-btn:hover { color: var(--navy); }
+
+    /* RESULTS PANEL */
+    .results-panel { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .empty-state {
+      background: var(--surface); border: 2px dashed var(--border);
+      border-radius: 18px; padding: 3.5rem 2rem; text-align: center;
+    }
+    .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty-state h3 { font-family:'Manrope',sans-serif; font-size:1.1rem; font-weight:800; color:var(--navy); margin-bottom:.5rem; }
+    .empty-state p { color:var(--muted); font-size:.88rem; line-height:1.6; }
+
+    .loading-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 2.5rem; text-align: center; display: none;
+    }
+    .loading-card.active { display: block; }
+    .ai-spinner {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 3px solid var(--teal-light); border-top-color: var(--navy);
+      animation: spin 1s linear infinite; margin: 0 auto 1.25rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-card p { color: var(--muted); font-size: .9rem; }
+    .loading-card strong { color: var(--navy); display: block; font-family:'Manrope',sans-serif; font-size:1rem; margin-bottom:.35rem; }
+    .loading-steps { margin-top: 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+    .loading-step {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .8rem; color: var(--muted); opacity: 0;
+      transition: opacity .4s;
+    }
+    .loading-step.visible { opacity: 1; }
+    .loading-step .material-symbols-outlined { font-size: .95rem; color: var(--teal); }
+
+    .result-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 1.75rem; box-shadow: var(--shadow);
+      display: none;
+    }
+    .result-card.active { display: block; animation: fadeUp .5s ease forwards; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+    .ai-header {
+      display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+    }
+    .ai-avatar {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--navy) 0%, #005db6 100%);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ai-avatar .material-symbols-outlined { color: #fff; font-size: 1.25rem; }
+    .ai-header-text h4 { font-family:'Manrope',sans-serif; font-size:.95rem; font-weight:800; color:var(--navy); }
+    .ai-header-text span { font-size:.75rem; color:var(--muted); }
+
+    /* Typed text area */
+    .ai-response { font-size: .92rem; line-height: 1.85; color: var(--text); min-height: 60px; }
+    .ai-response h3 {
+      font-family:'Manrope',sans-serif; font-size:1rem; font-weight:800;
+      color:var(--navy); margin:1.25rem 0 .5rem; display:flex; align-items:center; gap:.4rem;
+    }
+    .ai-response h3:first-child { margin-top: 0; }
+    .ai-response p { margin-bottom: .6rem; color: var(--muted); }
+    .ai-response ul { padding-left: 1.25rem; margin-bottom: .75rem; }
+    .ai-response li { margin-bottom: .3rem; color: var(--muted); }
+    .ai-response strong { color: var(--text); font-weight: 600; }
+
+    /* Hospital cards inside response */
+    .hosp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .75rem; margin: 1rem 0; }
+    .hosp-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+      padding: .9rem; text-align: center;
+    }
+    .hosp-card .flag { font-size: 1.6rem; margin-bottom: .4rem; }
+    .hosp-card .hosp-name { font-family:'Manrope',sans-serif; font-size: .78rem; font-weight: 800; color: var(--navy); margin-bottom: .2rem; }
+    .hosp-card .hosp-country { font-size: .7rem; color: var(--muted); margin-bottom: .4rem; }
+    .hosp-card .hosp-price { font-family:'Manrope',sans-serif; font-size: .88rem; font-weight: 800; color: var(--teal); }
+    .hosp-card .hosp-save { font-size: .68rem; color: #16a34a; font-weight: 600; }
+
+    .result-actions {
+      display: flex; gap: .75rem; margin-top: 1.5rem;
+      padding-top: 1.25rem; border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--navy); color: #fff; border: none; border-radius: 9px;
+      padding: .7rem 1.5rem; font-weight: 700; font-size: .88rem;
+      text-decoration: none; cursor: pointer; transition: background .2s;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+    .btn-primary:hover { background: var(--navy-dark); }
+    .btn-primary .material-symbols-outlined { font-size: 1rem; }
+    .btn-ghost {
+      background: transparent; color: var(--navy); border: 1.5px solid var(--border);
+      border-radius: 9px; padding: .68rem 1.4rem; font-weight: 700; font-size: .88rem;
+      text-decoration: none; cursor: pointer; transition: border-color .2s;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+    .btn-ghost:hover { border-color: var(--navy); }
+    .btn-ghost .material-symbols-outlined { font-size: 1rem; }
+
+    .ai-disclaimer {
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius);
+      padding: .9rem 1.1rem; display: none; gap: .65rem; align-items: flex-start;
+      font-size: .78rem; color: #92400e; line-height: 1.55;
+    }
+    .ai-disclaimer.visible { display: flex; }
+    .ai-disclaimer .material-symbols-outlined { font-size: 1rem; color: #d97706; flex-shrink: 0; margin-top:.05rem; }
+
+    /* FOOTER */
+    footer { background:#0f1e3d; padding:2rem clamp(1.5rem,5vw,4rem); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .footer-brand { font-family:'Manrope',sans-serif; font-size:1rem; font-weight:800; color:#fff; }
+    .footer-copy { color:rgba(255,255,255,.35); font-size:.78rem; }
+    .footer-links { display:flex; gap:1.5rem; }
+    .footer-links a { color:rgba(255,255,255,.45); font-size:.78rem; text-decoration:none; transition:color .2s; }
+    .footer-links a:hover { color:#8cf3f3; }
+
+    @media (max-width: 760px) {
+      main { grid-template-columns: 1fr; }
+      .form-panel { position: static; }
+      .nav-links { display: none; }
+      .hosp-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">MedBridge Travel</a>
+    <ul class="nav-links">
+      <li><a href="intake.html">Find Treatment</a></li>
+      <li><a href="provider.html">Specialists</a></li>
+      <li><a href="recommendations.html">Destinations</a></li>
+      <li><a href="cost.html">Cost Comparison</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="match.html" class="nav-cta active">✨ AI Match</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="header-inner">
+      <div class="ai-badge">
+        <span class="material-symbols-outlined">smart_toy</span>
+        Powered by MedBridge AI
+      </div>
+      <h1>Find Your Perfect<br>Hospital Match</h1>
+      <p>Tell us about your condition and preferences. Our AI analyzes your profile and recommends the best JCI-accredited hospitals worldwide — personalized for you.</p>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- LEFT: Form -->
+    <div class="form-panel">
+      <h2><span class="material-symbols-outlined">tune</span> Your Profile</h2>
+
+      <div class="step-group">
+        <label class="step-label">Treatment Category</label>
+        <select id="category">
+          <option value="" disabled selected>Select a category…</option>
+          <option value="orthopedic">Orthopedic Surgery</option>
+          <option value="cardiac">Cardiac Surgery</option>
+          <option value="dental">Dental Treatment</option>
+          <option value="cosmetic">Cosmetic Surgery</option>
+          <option value="fertility">Fertility & IVF</option>
+          <option value="vision">Vision Correction</option>
+          <option value="oncology">Oncology / Cancer</option>
+          <option value="general">General Surgery</option>
+        </select>
+      </div>
+
+      <div class="step-group">
+        <label class="step-label">Describe Your Symptoms or Needs</label>
+        <textarea id="symptoms" placeholder="e.g. I have chronic knee pain and have been told I need a total knee replacement. I'm 58 years old and otherwise healthy…"></textarea>
+      </div>
+
+      <div class="step-group">
+        <label class="step-label">Budget Range (USD)</label>
+        <select id="budget">
+          <option value="" disabled selected>Select budget…</option>
+          <option value="under5k">Under $5,000</option>
+          <option value="5to15k">$5,000 – $15,000</option>
+          <option value="15to30k">$15,000 – $30,000</option>
+          <option value="30to60k">$30,000 – $60,000</option>
+          <option value="over60k">$60,000+</option>
+          <option value="flexible">Flexible / Not sure</option>
+        </select>
+      </div>
+
+      <div class="step-group">
+        <label class="step-label">Preferred Destinations</label>
+        <div class="chip-group" id="destinations">
+          <div class="chip" data-val="Thailand">🇹🇭 Thailand</div>
+          <div class="chip" data-val="Turkey">🇹🇷 Turkey</div>
+          <div class="chip" data-val="India">🇮🇳 India</div>
+          <div class="chip" data-val="Mexico">🇲🇽 Mexico</div>
+          <div class="chip" data-val="Costa Rica">🇨🇷 Costa Rica</div>
+          <div class="chip" data-val="South Korea">🇰🇷 S. Korea</div>
+          <div class="chip" data-val="Any">🌍 Any</div>
+        </div>
+      </div>
+
+      <div class="step-group">
+        <label class="step-label">What Matters Most?</label>
+        <div class="chip-group" id="priorities">
+          <div class="chip" data-val="cost">💰 Lowest cost</div>
+          <div class="chip" data-val="quality">⭐ Highest rated</div>
+          <div class="chip" data-val="wait">⚡ Shortest wait</div>
+          <div class="chip" data-val="english">🗣️ English staff</div>
+          <div class="chip" data-val="luxury">🏨 Luxury recovery</div>
+          <div class="chip" data-val="close">✈️ Closest to USA</div>
+        </div>
+      </div>
+
+      <button class="match-btn" id="matchBtn" onclick="runMatch()">
+        <span class="material-symbols-outlined">smart_toy</span>
+        Find My Best Matches
+      </button>
+      <button class="reset-btn" onclick="resetForm()">↺ Start over</button>
+    </div>
+
+    <!-- RIGHT: Results -->
+    <div class="results-panel" id="resultsPanel">
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🏥</div>
+        <h3>Your AI Match is Ready</h3>
+        <p>Fill in your profile on the left and click <strong>"Find My Best Matches"</strong>. Our AI will analyze your needs and recommend the best hospitals, countries, and estimated costs — personalized for you.</p>
+      </div>
+
+      <div class="loading-card" id="loadingCard">
+        <div class="ai-spinner"></div>
+        <strong>Analyzing your profile…</strong>
+        <p>Matching your needs against 40+ JCI-accredited hospitals across 15 countries.</p>
+        <div class="loading-steps">
+          <div class="loading-step" id="ls1"><span class="material-symbols-outlined">search</span> Scanning treatment categories…</div>
+          <div class="loading-step" id="ls2"><span class="material-symbols-outlined">verified</span> Filtering JCI-accredited facilities…</div>
+          <div class="loading-step" id="ls3"><span class="material-symbols-outlined">payments</span> Calculating cost estimates…</div>
+          <div class="loading-step" id="ls4"><span class="material-symbols-outlined">star</span> Ranking by patient outcomes…</div>
+          <div class="loading-step" id="ls5"><span class="material-symbols-outlined">check_circle</span> Generating your personalized report…</div>
+        </div>
+      </div>
+
+      <div class="result-card" id="resultCard">
+        <div class="ai-header">
+          <div class="ai-avatar"><span class="material-symbols-outlined">smart_toy</span></div>
+          <div class="ai-header-text">
+            <h4>MedBridge AI Recommendation</h4>
+            <span id="aiSubtitle">Personalized analysis based on your profile</span>
+          </div>
+        </div>
+        <div class="ai-response" id="aiResponse"></div>
+        <div class="result-actions">
+          <a href="contact.html" class="btn-primary">
+            <span class="material-symbols-outlined">support_agent</span>
+            Talk to a Coordinator
+          </a>
+          <a href="cost.html" class="btn-ghost">
+            <span class="material-symbols-outlined">payments</span>
+            Full Cost Comparison
+          </a>
+        </div>
+      </div>
+
+      <div class="ai-disclaimer" id="disclaimer">
+        <span class="material-symbols-outlined">info</span>
+        <span>This AI recommendation is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare professional before making treatment decisions. Prices shown are estimates and may vary based on individual circumstances.</span>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-brand">MedBridge Travel</span>
+    <span class="footer-copy">© 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</span>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="contact.html">Contact Support</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── CHIP TOGGLE ──
+    document.querySelectorAll('.chip-group').forEach(group => {
+      group.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => chip.classList.toggle('selected'));
+      });
+    });
+
+    // ── PRE-WRITTEN AI RESPONSES ──
+    const responses = {
+      orthopedic: {
+        subtitle: "Orthopedic Surgery — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Hospitals</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇹🇷</div>
+    <div class="hosp-name">Memorial Hospital Istanbul</div>
+    <div class="hosp-country">Istanbul, Turkey</div>
+    <div class="hosp-price">$10,500 – $13,000</div>
+    <div class="hosp-save">Save up to 70% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇹🇭</div>
+    <div class="hosp-name">Bumrungrad International</div>
+    <div class="hosp-country">Bangkok, Thailand</div>
+    <div class="hosp-price">$13,000 – $16,000</div>
+    <div class="hosp-save">Save up to 63% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇮🇳</div>
+    <div class="hosp-name">Apollo Hospitals</div>
+    <div class="hosp-country">Chennai, India</div>
+    <div class="hosp-price">$7,000 – $9,500</div>
+    <div class="hosp-save">Save up to 80% vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Hospitals?</h3>
+<p>Based on your profile, all three hospitals are <strong>JCI-accredited</strong> and specialize in robotic-assisted orthopedic procedures with internationally trained surgeons. Memorial Hospital Istanbul ranks #1 in Europe for joint replacement outcomes, while Bumrungrad offers a premium recovery experience with dedicated international patient coordinators.</p>
+<h3>💰 Cost Breakdown (Estimated)</h3>
+<ul>
+  <li><strong>Surgery + implant:</strong> included in package</li>
+  <li><strong>Hospital stay (4–6 nights):</strong> included</li>
+  <li><strong>Post-op physiotherapy (5 sessions):</strong> included</li>
+  <li><strong>Airport transfer + concierge:</strong> included</li>
+  <li><strong>U.S. equivalent cost:</strong> $35,000 – $55,000</li>
+</ul>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Plan for a <strong>10–14 day stay</strong> before flying home</li>
+  <li>All three hospitals have <strong>English-speaking orthopedic teams</strong></li>
+  <li>MedBridge will coordinate your medical records transfer and pre-op consultation remotely</li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>Contact our coordinator to request a <strong>free detailed quote</strong> from your top choice. We'll arrange a virtual consultation with the surgical team within 48 hours.</p>`
+      },
+
+      cardiac: {
+        subtitle: "Cardiac Surgery — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Hospitals</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇮🇳</div>
+    <div class="hosp-name">Fortis Escorts Heart Institute</div>
+    <div class="hosp-country">New Delhi, India</div>
+    <div class="hosp-price">$14,000 – $18,000</div>
+    <div class="hosp-save">Save up to 88% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇹🇭</div>
+    <div class="hosp-name">Bumrungrad International</div>
+    <div class="hosp-country">Bangkok, Thailand</div>
+    <div class="hosp-price">$28,000 – $35,000</div>
+    <div class="hosp-save">Save up to 77% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇹🇷</div>
+    <div class="hosp-name">Anadolu Medical Center</div>
+    <div class="hosp-country">Istanbul, Turkey</div>
+    <div class="hosp-price">$24,000 – $29,000</div>
+    <div class="hosp-save">Save up to 80% vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Hospitals?</h3>
+<p>All three centers hold <strong>JCI accreditation</strong> and have performed thousands of open-heart procedures annually. Fortis Escorts Heart Institute is ranked among the top 3 cardiac centers in Asia, with a success rate exceeding 99.2% for bypass surgery. All facilities have dedicated international patient services and 24/7 cardiac ICU.</p>
+<h3>💰 Cost Breakdown (Estimated)</h3>
+<ul>
+  <li><strong>Cardiac surgery + anesthesia:</strong> included in package</li>
+  <li><strong>ICU stay (2–3 nights) + ward (5–7 nights):</strong> included</li>
+  <li><strong>Cardiac rehabilitation (10 sessions):</strong> included</li>
+  <li><strong>U.S. equivalent cost:</strong> $120,000 – $200,000</li>
+</ul>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Plan for a <strong>3–4 week stay</strong> post-surgery before flying</li>
+  <li>Pre-op cardiac evaluation can be arranged <strong>remotely before travel</strong></li>
+  <li>MedBridge coordinates direct communication between your U.S. cardiologist and the surgical team</li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>Given the complexity of cardiac procedures, we strongly recommend speaking with one of our medical coordinators who will arrange a <strong>no-cost pre-consultation</strong> with the cardiac team within 24 hours.</p>`
+      },
+
+      dental: {
+        subtitle: "Dental Treatment — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Clinics</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇹🇷</div>
+    <div class="hosp-name">Dentakay Dental Clinic</div>
+    <div class="hosp-country">Istanbul, Turkey</div>
+    <div class="hosp-price">$1,200 – $1,800</div>
+    <div class="hosp-save">Save up to 73% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇲🇽</div>
+    <div class="hosp-name">Dental Solutions Tijuana</div>
+    <div class="hosp-country">Tijuana, Mexico</div>
+    <div class="hosp-price">$1,400 – $2,000</div>
+    <div class="hosp-save">Save up to 67% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇨🇷</div>
+    <div class="hosp-name">Prisma Dental</div>
+    <div class="hosp-country">San José, Costa Rica</div>
+    <div class="hosp-price">$1,300 – $1,900</div>
+    <div class="hosp-save">Save up to 69% vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Clinics?</h3>
+<p>All three clinics use <strong>premium implant brands</strong> (Straumann, Nobel Biocare) with the latest digital imaging and guided implant surgery. Dentakay Istanbul is rated the #1 dental clinic in Turkey with over 5,000 international patients annually and a 97% patient satisfaction rate.</p>
+<h3>💰 Cost Breakdown Per Implant (Estimated)</h3>
+<ul>
+  <li><strong>Titanium implant + abutment:</strong> included</li>
+  <li><strong>Porcelain crown:</strong> included</li>
+  <li><strong>CT scan + consultation:</strong> included</li>
+  <li><strong>U.S. equivalent (per implant):</strong> $4,000 – $6,000</li>
+</ul>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Mexico is ideal if you want to <strong>minimize travel time</strong> from the U.S.</li>
+  <li>Turkey offers the <strong>lowest prices</strong> with excellent quality — great if combining with a trip</li>
+  <li>Most implant cases require <strong>2 visits</strong> (implant placement + crown fitting, 3–6 months apart)</li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>Share your dental X-rays with us and we'll get you a <strong>free detailed quote</strong> from all three clinics within 48 hours — no obligation required.</p>`
+      },
+
+      cosmetic: {
+        subtitle: "Cosmetic Surgery — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Clinics</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇹🇷</div>
+    <div class="hosp-name">Medicana International</div>
+    <div class="hosp-country">Istanbul, Turkey</div>
+    <div class="hosp-price">$3,200 – $5,500</div>
+    <div class="hosp-save">Save up to 68% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇹🇭</div>
+    <div class="hosp-name">Bumrungrad Aesthetic Center</div>
+    <div class="hosp-country">Bangkok, Thailand</div>
+    <div class="hosp-price">$4,000 – $6,500</div>
+    <div class="hosp-save">Save up to 60% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇲🇽</div>
+    <div class="hosp-name">Hospital Angeles</div>
+    <div class="hosp-country">Mexico City, Mexico</div>
+    <div class="hosp-price">$3,800 – $5,800</div>
+    <div class="hosp-save">Save up to 62% vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Clinics?</h3>
+<p>All three are <strong>internationally accredited</strong> with board-certified plastic surgeons who trained in the U.S. or Europe. Turkey has become the world's #1 destination for cosmetic procedures, with Istanbul hosting over 750,000 medical tourists annually for aesthetic treatments.</p>
+<h3>💰 Typical Cost Range</h3>
+<ul>
+  <li><strong>Rhinoplasty:</strong> $3,500 – $5,500 (vs. $12,000 U.S.)</li>
+  <li><strong>Breast augmentation:</strong> $3,200 – $5,000 (vs. $10,000 U.S.)</li>
+  <li><strong>Hair transplant (FUE):</strong> $2,200 – $3,500 (vs. $14,000 U.S.)</li>
+</ul>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Plan for a <strong>7–10 day stay</strong> for most cosmetic procedures</li>
+  <li>All clinics provide <strong>full aftercare packages</strong> with follow-up consultations</li>
+  <li>Virtual pre-consultation with surgeon available <strong>before you book flights</strong></li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>Tell us your specific procedure and we'll match you with a board-certified surgeon and provide a <strong>personalized quote within 24 hours</strong>.</p>`
+      },
+
+      fertility: {
+        subtitle: "Fertility & IVF — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Clinics</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇹🇷</div>
+    <div class="hosp-name">Anadolu IVF Center</div>
+    <div class="hosp-country">Istanbul, Turkey</div>
+    <div class="hosp-price">$4,500 – $6,000</div>
+    <div class="hosp-save">Save up to 78% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇹🇭</div>
+    <div class="hosp-name">Samitivej Fertility Center</div>
+    <div class="hosp-country">Bangkok, Thailand</div>
+    <div class="hosp-price">$6,500 – $9,000</div>
+    <div class="hosp-save">Save up to 65% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇮🇳</div>
+    <div class="hosp-name">Nova IVI Fertility</div>
+    <div class="hosp-country">Bangalore, India</div>
+    <div class="hosp-price">$3,500 – $5,000</div>
+    <div class="hosp-save">Save up to 83% vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Clinics?</h3>
+<p>All three centers report <strong>clinical pregnancy rates above 55%</strong> for patients under 35 — comparable to top U.S. fertility centers. They offer comprehensive IVF packages including stimulation medications, egg retrieval, embryo transfer, and PGT testing. English-speaking reproductive endocrinologists available at all locations.</p>
+<h3>💰 Cost Breakdown Per IVF Cycle (Estimated)</h3>
+<ul>
+  <li><strong>Monitoring, retrieval, transfer:</strong> included</li>
+  <li><strong>Stimulation medications:</strong> $1,000 – $2,500 additional</li>
+  <li><strong>PGT genetic testing (optional):</strong> $1,500 – $2,500 additional</li>
+  <li><strong>U.S. equivalent cost:</strong> $20,000 – $30,000 per cycle</li>
+</ul>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Initial workup and consultation can be done <strong>remotely before travel</strong></li>
+  <li>Plan for <strong>2–3 weeks on-site</strong> during the active cycle</li>
+  <li>Frozen embryo transfers can be done in a <strong>shorter follow-up trip</strong></li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>Our fertility specialist coordinator will review your medical history and connect you with the right clinic. Request your <strong>free consultation</strong> today.</p>`
+      },
+
+      vision: {
+        subtitle: "Vision Correction — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Clinics</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇹🇷</div>
+    <div class="hosp-name">Dünyagöz Eye Hospital</div>
+    <div class="hosp-country">Istanbul, Turkey</div>
+    <div class="hosp-price">$1,400 – $2,200</div>
+    <div class="hosp-save">Save up to 72% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇰🇷</div>
+    <div class="hosp-name">BGN Eye Clinic</div>
+    <div class="hosp-country">Seoul, South Korea</div>
+    <div class="hosp-price">$1,800 – $2,800</div>
+    <div class="hosp-save">Save up to 60% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇮🇳</div>
+    <div class="hosp-name">LV Prasad Eye Institute</div>
+    <div class="hosp-country">Hyderabad, India</div>
+    <div class="hosp-price">$900 – $1,400</div>
+    <div class="hosp-save">Save up to 82% vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Clinics?</h3>
+<p>All three centers use the latest <strong>LASIK and SMILE technology</strong> with femtosecond lasers. Dünyagöz performs over 80,000 LASIK procedures annually and is one of the largest eye hospital networks in Europe. South Korea is globally recognized as a leader in refractive surgery innovation.</p>
+<h3>💰 Cost Breakdown (Both Eyes)</h3>
+<ul>
+  <li><strong>Pre-op evaluation + corneal mapping:</strong> included</li>
+  <li><strong>LASIK or SMILE procedure (both eyes):</strong> included</li>
+  <li><strong>Post-op follow-up (1 month):</strong> included</li>
+  <li><strong>U.S. equivalent cost:</strong> $4,500 – $7,000</li>
+</ul>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Most LASIK patients fly home <strong>the next day</strong> — shortest recovery of any procedure</li>
+  <li>Pre-op suitability screening can be done with your U.S. eye doctor first</li>
+  <li>SMILE procedure available at all three centers — <strong>no flap, faster recovery</strong></li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>LASIK is one of the simplest procedures to arrange abroad. Contact us and we'll have you scheduled <strong>within 1 week</strong> of your chosen travel date.</p>`
+      },
+
+      oncology: {
+        subtitle: "Oncology / Cancer Treatment — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Centers</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇩🇪</div>
+    <div class="hosp-name">University Hospital Frankfurt</div>
+    <div class="hosp-country">Frankfurt, Germany</div>
+    <div class="hosp-price">Varies by protocol</div>
+    <div class="hosp-save">50–60% savings vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇹🇭</div>
+    <div class="hosp-name">Bumrungrad Cancer Center</div>
+    <div class="hosp-country">Bangkok, Thailand</div>
+    <div class="hosp-price">Varies by protocol</div>
+    <div class="hosp-save">60–70% savings vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇮🇳</div>
+    <div class="hosp-name">Tata Memorial Hospital</div>
+    <div class="hosp-country">Mumbai, India</div>
+    <div class="hosp-price">Varies by protocol</div>
+    <div class="hosp-save">70–80% savings vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Centers?</h3>
+<p>Cancer treatment requires the highest level of personalized evaluation. All three centers are <strong>internationally accredited</strong> with multidisciplinary tumor boards, the latest immunotherapy protocols, and dedicated international patient oncology coordinators who will review your case.</p>
+<h3>⚠️ Important Note</h3>
+<p>Oncology recommendations require a detailed review of your <strong>pathology reports, imaging, and treatment history</strong>. Our medical team will conduct a thorough case review before making specific treatment recommendations.</p>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Germany offers access to cutting-edge <strong>CAR-T and immunotherapy trials</strong> not yet available in the U.S.</li>
+  <li>All centers have tumor boards that review international cases <strong>within 5 business days</strong></li>
+  <li>MedBridge will coordinate your full medical records transfer securely</li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>Given the complexity of oncology cases, please <strong>speak directly with our medical coordinator</strong>. We treat every cancer case with the highest urgency and personalized attention it deserves.</p>`
+      },
+
+      general: {
+        subtitle: "General Surgery — Top 3 Matches Found",
+        html: `
+<h3>🏆 Top 3 Recommended Hospitals</h3>
+<div class="hosp-grid">
+  <div class="hosp-card">
+    <div class="flag">🇹🇭</div>
+    <div class="hosp-name">Bumrungrad International</div>
+    <div class="hosp-country">Bangkok, Thailand</div>
+    <div class="hosp-price">$5,000 – $12,000</div>
+    <div class="hosp-save">Save up to 65% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇹🇷</div>
+    <div class="hosp-name">Acibadem Hospital</div>
+    <div class="hosp-country">Istanbul, Turkey</div>
+    <div class="hosp-price">$4,500 – $10,000</div>
+    <div class="hosp-save">Save up to 70% vs. U.S.</div>
+  </div>
+  <div class="hosp-card">
+    <div class="flag">🇲🇽</div>
+    <div class="hosp-name">Hospital Angeles</div>
+    <div class="hosp-country">Mexico City, Mexico</div>
+    <div class="hosp-price">$4,000 – $9,000</div>
+    <div class="hosp-save">Save up to 72% vs. U.S.</div>
+  </div>
+</div>
+<h3>📋 Why These Hospitals?</h3>
+<p>All three hospitals are <strong>JCI-accredited</strong> with board-certified general surgeons trained at top international institutions. Acibadem Hospital in Istanbul is one of Turkey's largest hospital networks with 23 facilities and 3,500+ physicians. All offer minimally invasive laparoscopic surgery options.</p>
+<h3>💰 Typical Cost Range</h3>
+<ul>
+  <li><strong>Laparoscopic cholecystectomy (gallbladder):</strong> $4,000 – $6,000</li>
+  <li><strong>Hernia repair:</strong> $3,500 – $5,500</li>
+  <li><strong>Appendectomy:</strong> $3,000 – $5,000</li>
+  <li><strong>U.S. equivalent:</strong> typically $15,000 – $35,000</li>
+</ul>
+<h3>✅ Key Considerations for You</h3>
+<ul>
+  <li>Most general surgery procedures allow travel home within <strong>5–7 days</strong></li>
+  <li>Virtual pre-op consultation available <strong>before you travel</strong></li>
+  <li>All hospitals provide <strong>full English documentation</strong> for your home physician</li>
+</ul>
+<h3>🚀 Your Next Steps</h3>
+<p>Share your diagnosis and any relevant imaging with our team. We'll provide a <strong>personalized cost estimate within 48 hours</strong> from all three recommended hospitals.</p>`
+      }
+    };
+
+    // ── LOADING ANIMATION ──
+    function animateLoadingSteps() {
+      const steps = ['ls1','ls2','ls3','ls4','ls5'];
+      steps.forEach((id, i) => {
+        setTimeout(() => {
+          document.getElementById(id).classList.add('visible');
+        }, i * 500 + 300);
+      });
+    }
+
+    // ── MAIN MATCH FUNCTION ──
+    function runMatch() {
+      const category = document.getElementById('category').value;
+      const symptoms = document.getElementById('symptoms').value.trim();
+
+      if (!category) {
+        alert('Please select a treatment category first.');
+        return;
+      }
+      if (!symptoms) {
+        alert('Please describe your symptoms or medical needs.');
+        return;
+      }
+
+      // Reset loading steps
+      ['ls1','ls2','ls3','ls4','ls5'].forEach(id => {
+        document.getElementById(id).classList.remove('visible');
+      });
+
+      // Show loading
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('resultCard').classList.remove('active');
+      document.getElementById('disclaimer').classList.remove('visible');
+      document.getElementById('loadingCard').classList.add('active');
+      document.getElementById('matchBtn').disabled = true;
+
+      // Animate steps
+      animateLoadingSteps();
+
+      // After 3 seconds, show result
+      setTimeout(() => {
+        const data = responses[category] || responses['general'];
+
+        document.getElementById('aiSubtitle').textContent = data.subtitle;
+        document.getElementById('aiResponse').innerHTML = data.html;
+
+        document.getElementById('loadingCard').classList.remove('active');
+        document.getElementById('resultCard').classList.add('active');
+        document.getElementById('disclaimer').classList.add('visible');
+        document.getElementById('matchBtn').disabled = false;
+
+        // Scroll to result
+        document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 3000);
+    }
+
+    // ── RESET ──
+    function resetForm() {
+      document.getElementById('category').value = '';
+      document.getElementById('symptoms').value = '';
+      document.getElementById('budget').value = '';
+      document.querySelectorAll('.chip.selected').forEach(c => c.classList.remove('selected'));
+      document.getElementById('emptyState').style.display = 'block';
+      document.getElementById('loadingCard').classList.remove('active');
+      document.getElementById('resultCard').classList.remove('active');
+      document.getElementById('disclaimer').classList.remove('visible');
+    }
+  </script>
+
+</body>
+</html>
