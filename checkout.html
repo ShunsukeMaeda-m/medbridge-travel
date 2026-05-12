@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Package | MedBridge Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:#00478d; --navy-dark:#003570; --teal:#006a6a; --teal-light:#e8f5f5;
+      --bg:#f7fafc; --surface:#ffffff; --border:#e0e6ef; --text:#181c1e; --muted:#424752;
+      --green:#16a34a; --green-light:#f0fdf4; --radius:14px;
+      --shadow:0 2px 12px rgba(0,71,141,.07); --shadow-md:0 6px 28px rgba(0,71,141,.12);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+    .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);height:68px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-brand{font-family:'Manrope',sans-serif;font-size:1.25rem;font-weight:800;color:#1e3a8a;text-decoration:none;}
+    .nav-links{display:flex;gap:2rem;list-style:none;}
+    .nav-links a{color:var(--muted);font-size:.875rem;font-weight:600;text-decoration:none;transition:color .2s;}
+    .nav-links a:hover{color:var(--navy);}
+    .nav-cta{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:.55rem 1.4rem;font-size:.85rem;font-weight:700;cursor:pointer;text-decoration:none;}
+
+    .page-header{padding-top:68px;background:var(--surface);border-bottom:1px solid var(--border);}
+    .header-inner{max-width:1100px;margin:0 auto;padding:2.5rem clamp(1.5rem,5vw,3rem) 2rem;}
+    .breadcrumb{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--muted);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em;}
+    .breadcrumb a{color:var(--teal);text-decoration:none;}
+    .breadcrumb .material-symbols-outlined{font-size:.9rem;}
+
+    .progress-bar{display:flex;align-items:center;gap:0;max-width:500px;margin:1.25rem 0 0;}
+    .prog-step{display:flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:700;color:var(--muted);}
+    .prog-step.active{color:var(--navy);}
+    .prog-step.done{color:var(--green);}
+    .prog-dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--muted);flex-shrink:0;}
+    .prog-step.active .prog-dot{background:var(--navy);border-color:var(--navy);color:#fff;}
+    .prog-step.done .prog-dot{background:var(--green);border-color:var(--green);color:#fff;}
+    .prog-line{flex:1;height:2px;background:var(--border);margin:0 .5rem;min-width:40px;}
+    .prog-line.done{background:var(--green);}
+
+    main{max-width:1100px;margin:0 auto;padding:2.5rem clamp(1.5rem,5vw,3rem) 5rem;display:grid;grid-template-columns:1fr 380px;gap:2.5rem;align-items:start;}
+
+    .checkout-form{display:flex;flex-direction:column;gap:1.5rem;}
+    .form-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);}
+    .form-section h2{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem;}
+    .form-section h2 .material-symbols-outlined{color:var(--teal);font-size:1.2rem;}
+    .section-num{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:.72rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .form-group{display:flex;flex-direction:column;gap:.4rem;}
+    .form-group.full{grid-column:1/-1;}
+    label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
+    input,select,textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:9px;color:var(--text);font-family:'Inter',sans-serif;font-size:.9rem;padding:.7rem .9rem;outline:none;appearance:none;transition:border-color .2s,box-shadow .2s;}
+    input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(0,71,141,.1);background:#fff;}
+    input::placeholder,textarea::placeholder{color:#b0bdd0;}
+    select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23424752' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.5rem;cursor:pointer;}
+    textarea{resize:vertical;min-height:80px;}
+
+    .payment-options{display:flex;flex-direction:column;gap:.75rem;}
+    .payment-option{display:flex;align-items:center;gap:1rem;border:1.5px solid var(--border);border-radius:10px;padding:1rem 1.25rem;cursor:pointer;transition:all .2s;}
+    .payment-option:hover{border-color:var(--navy);}
+    .payment-option.selected{border-color:var(--navy);background:#f0f5ff;}
+    .payment-option input[type="radio"]{width:18px;height:18px;accent-color:var(--navy);flex-shrink:0;}
+    .payment-option-info h4{font-family:'Manrope',sans-serif;font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.15rem;}
+    .payment-option-info p{font-size:.78rem;color:var(--muted);}
+    .payment-badge{margin-left:auto;background:var(--teal-light);color:var(--teal);border-radius:50px;padding:.2rem .7rem;font-size:.7rem;font-weight:700;white-space:nowrap;}
+
+    .submit-btn{width:100%;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:1rem;font-family:'Manrope',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;transition:background .2s,transform .15s,box-shadow .2s;}
+    .submit-btn:hover{background:var(--navy-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,71,141,.22);}
+    .submit-btn .material-symbols-outlined{font-size:1.1rem;}
+    .secure-note{display:flex;align-items:center;justify-content:center;gap:.4rem;font-size:.75rem;color:var(--muted);margin-top:.75rem;}
+    .secure-note .material-symbols-outlined{font-size:.9rem;color:var(--green);}
+
+    /* ORDER SUMMARY */
+    .order-summary{position:sticky;top:84px;}
+    .summary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);}
+    .summary-header{background:var(--navy);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:.6rem;}
+    .summary-header h3{font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:800;color:#fff;}
+    .summary-header .material-symbols-outlined{color:rgba(255,255,255,.7);font-size:1.1rem;}
+    .summary-body{padding:1.5rem;}
+    .summary-hospital{display:flex;align-items:center;gap:1rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);margin-bottom:1.25rem;}
+    .hosp-flag{font-size:2rem;flex-shrink:0;}
+    .hosp-info h4{font-family:'Manrope',sans-serif;font-size:.92rem;font-weight:800;color:var(--navy);margin-bottom:.2rem;}
+    .hosp-info p{font-size:.78rem;color:var(--muted);}
+    .jci-badge{display:inline-flex;align-items:center;gap:.3rem;background:var(--teal-light);color:var(--teal);border-radius:50px;padding:.2rem .6rem;font-size:.68rem;font-weight:700;margin-top:.3rem;}
+    .jci-badge .material-symbols-outlined{font-size:.8rem;}
+    .summary-items{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.25rem;}
+    .summary-item{display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;color:var(--muted);}
+    .summary-item .material-symbols-outlined{font-size:1rem;color:var(--teal);margin-top:.1rem;flex-shrink:0;}
+    .summary-item strong{color:var(--text);}
+    .summary-divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0;}
+    .price-rows{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem;}
+    .price-row{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;}
+    .price-row span{color:var(--muted);}
+    .price-row strong{color:var(--text);font-weight:600;}
+    .price-row.total{font-size:1rem;padding-top:.75rem;border-top:2px solid var(--border);}
+    .price-row.total span,.price-row.total strong{font-family:'Manrope',sans-serif;font-weight:800;color:var(--navy);font-size:1.1rem;}
+    .savings-box{background:var(--green-light);border:1px solid #bbf7d0;border-radius:10px;padding:.9rem 1rem;display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--green);font-weight:600;}
+    .savings-box .material-symbols-outlined{font-size:1.1rem;flex-shrink:0;}
+    .trust-items{display:flex;flex-direction:column;gap:.5rem;margin-top:1.25rem;}
+    .trust-item{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted);}
+    .trust-item .material-symbols-outlined{font-size:.95rem;color:var(--green);}
+
+    /* SUCCESS */
+    .success-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,71,141,.6);backdrop-filter:blur(6px);align-items:center;justify-content:center;}
+    .success-overlay.active{display:flex;}
+    .success-card{background:var(--surface);border-radius:20px;padding:3rem 2.5rem;text-align:center;max-width:480px;width:90%;box-shadow:0 20px 60px rgba(0,71,141,.25);animation:popIn .4s cubic-bezier(.34,1.56,.64,1) forwards;}
+    @keyframes popIn{from{opacity:0;transform:scale(.85);}to{opacity:1;transform:scale(1);}}
+    .success-icon{width:72px;height:72px;border-radius:50%;background:var(--green-light);border:3px solid #bbf7d0;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;}
+    .success-icon .material-symbols-outlined{color:var(--green);font-size:2.2rem;}
+    .success-card h2{font-family:'Manrope',sans-serif;font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.75rem;}
+    .success-card p{color:var(--muted);font-size:.92rem;line-height:1.7;margin-bottom:1.5rem;}
+    .booking-ref{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.9rem;margin-bottom:1.5rem;}
+    .booking-ref .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:.25rem;}
+    .booking-ref .ref-num{font-family:'Manrope',sans-serif;font-size:1.3rem;font-weight:800;color:var(--navy);}
+    .success-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+    .btn-primary{background:var(--navy);color:#fff;border:none;border-radius:9px;padding:.75rem 1.5rem;font-weight:700;font-size:.9rem;text-decoration:none;cursor:pointer;transition:background .2s;display:inline-block;}
+    .btn-primary:hover{background:var(--navy-dark);}
+    .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--border);border-radius:9px;padding:.73rem 1.4rem;font-weight:700;font-size:.9rem;text-decoration:none;cursor:pointer;display:inline-block;}
+
+    footer{background:#0f1e3d;padding:2rem clamp(1.5rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .footer-brand{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:800;color:#fff;}
+    .footer-copy{color:rgba(255,255,255,.35);font-size:.78rem;}
+    .footer-links{display:flex;gap:1.5rem;}
+    .footer-links a{color:rgba(255,255,255,.45);font-size:.78rem;text-decoration:none;transition:color .2s;}
+    .footer-links a:hover{color:#8cf3f3;}
+
+    @media(max-width:860px){main{grid-template-columns:1fr;}.order-summary{position:static;}.nav-links{display:none;}.form-grid{grid-template-columns:1fr;}}
+    .fade-in{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+    .fade-in.visible{opacity:1;transform:none;}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">MedBridge Travel</a>
+    <ul class="nav-links">
+      <li><a href="intake.html">Find Treatment</a></li>
+      <li><a href="recommendations.html">Destinations</a></li>
+      <li><a href="cost.html">Cost Comparison</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="match.html" style="background:#00478d;color:#fff;border-radius:8px;padding:.45rem 1.1rem;font-size:.82rem;font-weight:700;text-decoration:none;margin-right:.75rem;">✨ AI Match</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="header-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <a href="recommendations.html">Results</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <span>Book Package</span>
+      </div>
+      <div class="progress-bar">
+        <div class="prog-step done"><div class="prog-dot"><span class="material-symbols-outlined" style="font-size:.85rem;">check</span></div><span>Find Treatment</span></div>
+        <div class="prog-line done"></div>
+        <div class="prog-step done"><div class="prog-dot"><span class="material-symbols-outlined" style="font-size:.85rem;">check</span></div><span>Select Hospital</span></div>
+        <div class="prog-line done"></div>
+        <div class="prog-step active"><div class="prog-dot">3</div><span>Book Package</span></div>
+        <div class="prog-line"></div>
+        <div class="prog-step"><div class="prog-dot">4</div><span>Confirmation</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- LEFT: FORM -->
+    <div class="checkout-form fade-in">
+      <div class="form-section">
+        <h2><span class="section-num">1</span> <span class="material-symbols-outlined">person</span> Personal Information</h2>
+        <div class="form-grid">
+          <div class="form-group"><label>First Name *</label><input type="text" placeholder="Jane" /></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Smith" /></div>
+          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="jane@example.com" /></div>
+          <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" placeholder="+1 555 000 0000" /></div>
+          <div class="form-group"><label>Date of Birth</label><input type="date" /></div>
+          <div class="form-group">
+            <label>Nationality</label>
+            <select><option value="" disabled selected>Select country…</option><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Australia</option><option>Other</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2><span class="section-num">2</span> <span class="material-symbols-outlined">flight</span> Travel Details</h2>
+        <div class="form-grid">
+          <div class="form-group"><label>Preferred Arrival Date</label><input type="date" /></div>
+          <div class="form-group">
+            <label>Flexibility</label>
+            <select><option>Exact date</option><option>± 3 days</option><option>± 1 week</option><option>Flexible</option></select>
+          </div>
+          <div class="form-group"><label>Departure City</label><input type="text" placeholder="e.g. Los Angeles, CA" /></div>
+          <div class="form-group">
+            <label>Companions Traveling</label>
+            <select><option>Traveling alone</option><option>1 companion</option><option>2 companions</option><option>3+ companions</option></select>
+          </div>
+          <div class="form-group full"><label>Special Requests or Medical Notes</label><textarea placeholder="e.g. wheelchair assistance needed, dietary restrictions…"></textarea></div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2><span class="section-num">3</span> <span class="material-symbols-outlined">payments</span> Payment Plan</h2>
+        <div class="payment-options" id="paymentOptions">
+          <!-- Dynamically generated -->
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="submitBooking()">
+        <span class="material-symbols-outlined">lock</span>
+        Confirm Booking Request
+      </button>
+      <div class="secure-note">
+        <span class="material-symbols-outlined">verified_user</span>
+        Secure & encrypted — no payment charged until confirmed by your coordinator
+      </div>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div class="order-summary fade-in">
+      <div class="summary-card">
+        <div class="summary-header">
+          <span class="material-symbols-outlined">receipt_long</span>
+          <h3>Order Summary</h3>
+        </div>
+        <div class="summary-body">
+          <div class="summary-hospital">
+            <div class="hosp-flag" id="sumFlag">🏥</div>
+            <div class="hosp-info">
+              <h4 id="sumName">Loading…</h4>
+              <p id="sumLocation">—</p>
+              <div class="jci-badge"><span class="material-symbols-outlined">verified</span> JCI Accredited</div>
+            </div>
+          </div>
+          <div class="summary-items" id="sumItems"></div>
+          <hr class="summary-divider" />
+          <div class="price-rows" id="sumPrices"></div>
+          <div class="savings-box">
+            <span class="material-symbols-outlined">savings</span>
+            <span id="sumSavings">You save approximately <strong>—</strong> vs. U.S. pricing</span>
+          </div>
+          <div class="trust-items">
+            <div class="trust-item"><span class="material-symbols-outlined">check_circle</span>Free cancellation up to 14 days before</div>
+            <div class="trust-item"><span class="material-symbols-outlined">check_circle</span>No payment charged until coordinator confirms</div>
+            <div class="trust-item"><span class="material-symbols-outlined">check_circle</span>HIPAA & GDPR compliant data handling</div>
+            <div class="trust-item"><span class="material-symbols-outlined">check_circle</span>Coordinator responds within 4 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SUCCESS OVERLAY -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <div class="success-icon"><span class="material-symbols-outlined">check</span></div>
+      <h2>Booking Request Received!</h2>
+      <p>Your request has been submitted successfully. A MedBridge coordinator will contact you within <strong>4 business hours</strong> to confirm your package and arrange next steps.</p>
+      <div class="booking-ref">
+        <div class="label">Booking Reference</div>
+        <div class="ref-num" id="refNum">MBT-2024-0001</div>
+      </div>
+      <div class="success-actions">
+        <a href="index.html" class="btn-primary">Back to Home</a>
+        <a href="contact.html" class="btn-ghost">Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-brand">MedBridge Travel</span>
+    <span class="footer-copy">© 2024 MedBridge Travel. Accredited Global Healthcare Concierge.</span>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="contact.html">Contact Support</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── HOSPITAL DATA ──
+    const hospitals = {
+      bumrungrad: {
+        flag: '🇹🇭',
+        name: 'Bumrungrad International Hospital',
+        location: 'Bangkok, Thailand',
+        procedure: 'Dental Implant Surgery',
+        procedureDetail: 'Titanium implant + immediate loading',
+        nights: 3,
+        price: 4500,
+        usPrice: 13000,
+        breakdown: { 'Surgery + Implant': 3200, 'Hospital Stay (3 nights)': 750, 'Transfers + Concierge': 350, 'MedBridge Service Fee': 200 },
+        features: ['Private Recovery Suite', 'US-Trained Doctors', 'English-speaking coordinator', 'VIP Airport Transfer']
+      },
+      istanbul: {
+        flag: '🇹🇷',
+        name: 'Istanbul Aesthetic Center',
+        location: 'Istanbul, Turkey',
+        procedure: 'Dental Implant Surgery',
+        procedureDetail: 'Titanium implant + zirconia crown',
+        nights: 4,
+        price: 3200,
+        usPrice: 13000,
+        breakdown: { 'Surgery + Implant': 2300, 'Hotel Stay (4 nights)': 600, 'Transfers + Concierge': 200, 'MedBridge Service Fee': 100 },
+        features: ['4-Star Hotel Stay', 'VIP Airport Transfer', 'Multilingual Staff', 'European-trained specialists']
+      },
+      cima: {
+        flag: '🇨🇷',
+        name: 'CIMA Hospital San José',
+        location: 'San José, Costa Rica',
+        procedure: 'Dental Implant Surgery',
+        procedureDetail: 'Premium implant + aftercare program',
+        nights: 3,
+        price: 5100,
+        usPrice: 13000,
+        breakdown: { 'Surgery + Implant': 3800, 'Hospital Stay (3 nights)': 850, 'Transfers + Concierge': 300, 'MedBridge Service Fee': 150 },
+        features: ['Minimal Travel Time from USA', 'High Success Rate', 'Aftercare Program', 'English-speaking staff']
+      }
+    };
+
+    // ── READ URL PARAMS ──
+    function getParam(key) {
+      return new URLSearchParams(window.location.search).get(key);
+    }
+
+    // ── POPULATE ORDER SUMMARY ──
+    function populateSummary() {
+      const id = getParam('hospital') || 'bumrungrad';
+      const h = hospitals[id] || hospitals['bumrungrad'];
+
+      document.getElementById('sumFlag').textContent = h.flag;
+      document.getElementById('sumName').textContent = h.name;
+      document.getElementById('sumLocation').textContent = h.location;
+
+      // Features
+      const itemsEl = document.getElementById('sumItems');
+      itemsEl.innerHTML = `
+        <div class="summary-item"><span class="material-symbols-outlined">medical_services</span><span><strong>${h.procedure}</strong><br>${h.procedureDetail}</span></div>
+        <div class="summary-item"><span class="material-symbols-outlined">bed</span><span><strong>${h.nights} Nights</strong> — Private Room</span></div>
+        ${h.features.slice(2).map(f => `<div class="summary-item"><span class="material-symbols-outlined">check_circle</span><span>${f}</span></div>`).join('')}
+        <div class="summary-item"><span class="material-symbols-outlined">support_agent</span><span><strong>24/7 Concierge</strong> throughout stay</span></div>
+      `;
+
+      // Price breakdown
+      const pricesEl = document.getElementById('sumPrices');
+      let rows = Object.entries(h.breakdown).map(([k, v]) =>
+        `<div class="price-row"><span>${k}</span><strong>$${v.toLocaleString()}</strong></div>`
+      ).join('');
+      rows += `<div class="price-row total"><span>Total</span><strong>$${h.price.toLocaleString()}</strong></div>`;
+      pricesEl.innerHTML = rows;
+
+      // Savings
+      const saved = h.usPrice - h.price;
+      document.getElementById('sumSavings').innerHTML =
+        `You save approximately <strong>$${saved.toLocaleString()}</strong> vs. U.S. pricing`;
+
+      // Payment options
+      const monthly3 = Math.ceil(h.price / 3);
+      const monthly6 = Math.ceil(h.price / 6);
+      document.getElementById('paymentOptions').innerHTML = `
+        <label class="payment-option selected" onclick="selectPayment(this)">
+          <input type="radio" name="payment" checked />
+          <div class="payment-option-info">
+            <h4>Pay in Full</h4>
+            <p>$${h.price.toLocaleString()} due today — includes all services</p>
+          </div>
+          <span class="payment-badge">Most Popular</span>
+        </label>
+        <label class="payment-option" onclick="selectPayment(this)">
+          <input type="radio" name="payment" />
+          <div class="payment-option-info">
+            <h4>3-Month Installment Plan</h4>
+            <p>3 × $${monthly3.toLocaleString()} — no interest, no fees</p>
+          </div>
+          <span class="payment-badge">0% APR</span>
+        </label>
+        <label class="payment-option" onclick="selectPayment(this)">
+          <input type="radio" name="payment" />
+          <div class="payment-option-info">
+            <h4>6-Month Installment Plan</h4>
+            <p>6 × $${monthly6.toLocaleString()} — no interest, no fees</p>
+          </div>
+          <span class="payment-badge">0% APR</span>
+        </label>
+      `;
+    }
+
+    function selectPayment(el) {
+      document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function submitBooking() {
+      const n = Math.floor(Math.random() * 9000) + 1000;
+      document.getElementById('refNum').textContent = `MBT-2024-${n}`;
+      document.getElementById('successOverlay').classList.add('active');
+    }
+
+    // Fade in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Init
+    populateSummary();
+  </script>
+
+</body>
+</html>
